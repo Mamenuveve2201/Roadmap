@@ -1,5 +1,5 @@
-var CACHE = 'roadmap-v9';
-var ASSETS = [
+const CACHE = 'roadmap-v9';
+const ASSETS = [
   '/Roadmap/',
   '/Roadmap/index.html',
   '/Roadmap/style.css',
@@ -9,46 +9,37 @@ var ASSETS = [
   '/Roadmap/icons/icon-512.png'
 ];
 
-self.addEventListener('install', function(e) {
-  e.waitUntil(
-    caches.open(CACHE).then(function(c) {
-      return c.addAll(ASSETS).catch(function(){});
-    })
-  );
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS).catch(() => {})));
   self.skipWaiting();
 });
 
-self.addEventListener('activate', function(e) {
+self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(function(keys) {
-      return Promise.all(
-        keys.filter(function(k){ return k !== CACHE; })
-            .map(function(k){ return caches.delete(k); })
-      );
-    })
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+    )
   );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', function(e) {
+self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
-  if (e.request.url.indexOf('supabase.co') >= 0) return;
-  if (e.request.url.indexOf('jsdelivr.net') >= 0) return;
-  if (e.request.url.indexOf('fonts.googleapis') >= 0) return;
-  if (e.request.url.indexOf('chrome-extension') >= 0) return;
+  if (e.request.url.includes('supabase.co')) return;
+  if (e.request.url.includes('jsdelivr.net')) return;
+  if (e.request.url.includes('fonts.googleapis')) return;
+  if (e.request.url.includes('chrome-extension')) return;
 
-  // Network-first: always fetch fresh, fall back to cache only if offline
+  // Network-first: always fetch fresh, fall back to cache
   e.respondWith(
     fetch(e.request)
-      .then(function(res) {
+      .then(res => {
         if (res && res.status === 200) {
-          var clone = res.clone();
-          caches.open(CACHE).then(function(c){ c.put(e.request, clone); });
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
         }
         return res;
       })
-      .catch(function() {
-        return caches.match(e.request);
-      })
+      .catch(() => caches.match(e.request))
   );
 });
