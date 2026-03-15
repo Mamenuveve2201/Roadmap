@@ -1,4 +1,4 @@
-const CACHE = 'roadmap-v7';
+const CACHE = 'roadmap-v8';
 const ASSETS = [
   '/Roadmap/',
   '/Roadmap/index.html',
