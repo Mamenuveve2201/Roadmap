@@ -1,5 +1,5 @@
-const CACHE = 'roadmap-v8';
-const ASSETS = [
+var CACHE = 'roadmap-v9';
+var ASSETS = [
   '/Roadmap/',
   '/Roadmap/index.html',
   '/Roadmap/style.css',
@@ -9,30 +9,46 @@ const ASSETS = [
   '/Roadmap/icons/icon-512.png'
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+self.addEventListener('install', function(e) {
+  e.waitUntil(
+    caches.open(CACHE).then(function(c) {
+      return c.addAll(ASSETS).catch(function(){});
+    })
+  );
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
+self.addEventListener('activate', function(e) {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    )
+    caches.keys().then(function(keys) {
+      return Promise.all(
+        keys.filter(function(k){ return k !== CACHE; })
+            .map(function(k){ return caches.delete(k); })
+      );
+    })
   );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', e => {
-  if (e.request.url.includes('supabase.co') || e.request.url.includes('jsdelivr.net')) {
-    e.respondWith(fetch(e.request));
-    return;
-  }
-  if (e.request.destination === 'document') {
-    e.respondWith(fetch(e.request).catch(() => caches.match('/Roadmap/index.html')));
-    return;
-  }
+self.addEventListener('fetch', function(e) {
+  if (e.request.method !== 'GET') return;
+  if (e.request.url.indexOf('supabase.co') >= 0) return;
+  if (e.request.url.indexOf('jsdelivr.net') >= 0) return;
+  if (e.request.url.indexOf('fonts.googleapis') >= 0) return;
+  if (e.request.url.indexOf('chrome-extension') >= 0) return;
+
+  // Network-first: always fetch fresh, fall back to cache only if offline
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    fetch(e.request)
+      .then(function(res) {
+        if (res && res.status === 200) {
+          var clone = res.clone();
+          caches.open(CACHE).then(function(c){ c.put(e.request, clone); });
+        }
+        return res;
+      })
+      .catch(function() {
+        return caches.match(e.request);
+      })
   );
 });
