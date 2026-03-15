@@ -24,141 +24,97 @@ const db = createClient(SUPABASE_URL, SUPABASE_ANON);
 
 const TASKS = {
   python: [
-    {
-      phase: "Week 1 — Foundations (Mar 16–19)",
-      dates: "Mar 16–19 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: Set up Python environment, review data types + operators (2h)",
-        "MON: Practice loops (for, while) + functions with small exercises (1h)",
-        "TUE: Review string methods: .strip(), .split(), .join() — 1h max",
-        "WED: File I/O — open(), read, write; error handling try/except (2h)",
-        "WED: OOP basics — classes, __init__, inheritance (2h)",
-        "THU: Quick OOP practice — write 1 small class from scratch — 1h max",
-      ]
-    },
-    {
-      phase: "Week 2 — BTB Stage 1 (Mar 23–26)",
-      dates: "Mar 23–26 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: Read BTB assignment spec fully, understand input/output format (1h)",
-        "MON: BTB Stage 1 — config file parsing + trace file reading (3h)",
-        "TUE: BTB Stage 1 — fix bugs, test against sample input — 1h max",
-        "WED: BTB Stage 1 — formatted output printing, match expected format (2h)",
-        "WED: BTB Stage 1 — self-test with diff tool, submit Stage 1 (1h)",
-        "THU: Review bit manipulation: >>, <<, &, | with examples — 1h max",
-      ]
-    },
-    {
-      phase: "Week 3 — BTB Stages 2–4 (Mar 30 – Apr 2)",
-      dates: "Mar 30 – Apr 2 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: BTB Stage 2 — buffer data structure + hit/miss logic (3h)",
-        "MON: Test Stage 2 against professor's executable (1h)",
-        "TUE: BTB Stage 3 — 1-bit predictor implementation — 1h max",
-        "WED: BTB Stage 4 — 2-bit predictor state machine (3h)",
-        "WED: Test Stages 3–4, fix any issues (1h)",
-        "THU: Review and clean up Stages 1–4 code — 1h max",
-      ]
-    },
-    {
-      phase: "Week 4 — BTB Stages 5–7 + Research Setup (Apr 6–9)",
-      dates: "Apr 6–9 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: BTB Stage 5 — (m,n) correlating predictor (3h)",
-        "MON: BTB Stage 6 — Tournament predictor (2h)",
-        "TUE: Test Stages 5–6 against executable — 1h max",
-        "WED: BTB Stage 7 — final polish, comments, cleanup (2h)",
-        "WED: Submit BTB assignment ✅ + set up research project Jupyter notebook (2h)",
-        "THU: Load PERSUADE corpus with pandas, verify data — 1h max",
-      ]
-    },
-    {
-      phase: "Week 5 — Pattern Recognition Project (Apr 13–16)",
-      dates: "Apr 13–16 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: Build feature extraction pipeline — linguistic features (3h)",
-        "MON: Train Logistic Regression + Random Forest classifiers (2h)",
-        "TUE: Review model outputs, fix any pipeline bugs — 1h max",
-        "WED: Train XGBoost classifier + run cross-validation (3h)",
-        "WED: Fine-tune RoBERTa baseline (2h)",
-        "THU: Write evaluation metrics analysis section — 1h max",
-      ]
-    },
-    {
-      phase: "Final Push — Project Due Apr 23",
-      dates: "Apr 20–23",
-      items: [
-        "MON Apr 20: Write up results and discussion section (3h)",
-        "MON Apr 20: Final review of all code — clean and comment (2h)",
-        "TUE Apr 21: Final proofreading and formatting — 1h max",
-        "WED Apr 22: Buffer day — fix anything remaining (2h)",
-        "THU Apr 23: ✅ SUBMIT PATTERN RECOGNITION PROJECT",
-      ]
-    }
+    { phase: "Week 1 — Setup + Data Generation (Mar 19–23)", dates: "Mar 19–23 · Thu 03/19 + Mon 03/23", items: [
+      "THU 03/19 8am–12pm: Set up Python venv, install all libraries (openai, anthropic, groq, scikit-learn, spacy, pandas, numpy, nltk, torch, matplotlib)",
+      "THU 03/19 8am–12pm: Sign up for OpenAI, Anthropic, Groq, Google AI Studio, Kaggle — save all API keys in .env file",
+      "THU 03/19 2pm–5pm: Download PERSUADE dataset from Kaggle, test one API call with Groq to verify setup works",
+      "THU 03/19 2pm–5pm: python -m spacy download en_core_web_sm · download NLTK punkt + averaged_perceptron_tagger",
+      "MON 03/23 8am–12pm: Write data generation script, randomly sample 1,000 essays from PERSUADE",
+      "MON 03/23 8am–12pm: Generate 800 samples from Gemini-1.5-Pro (FREE) + LLaMA-3.1-70B (Groq FREE)",
+    ] },
+    { phase: "Week 2 — Finish Data + Start Features (Mar 26 – Apr 1)", dates: "Mar 26, 30–31, Apr 1", items: [
+      "THU 03/26 10am–2:30pm: Generate 800 samples from Mixtral-8x7B + GPT-4o + Claude-3.5-Sonnet · save all CSVs",
+      "THU 03/26 10am–2:30pm: Start data cleaning — remove failed generations and AI refusals",
+      "MON 03/30 8am–12pm: Complete data cleaning, combine all data into master_dataset.csv (5,000 rows: 1,000 human + 4,000 AI)",
+      "MON 03/30 2pm–5pm: Learn spaCy basics (Doc, Token, .pos_, .dep_) · write extract_features() skeleton",
+      "MON 03/30 2pm–5pm: Implement passive/active voice detection + verb tense features (past/present/future)",
+      "TUE 03/31 10am–2:30pm: Implement pronoun frequencies, sentence length stats, Type-Token Ratio, Yule's K, POS tag distributions",
+    ] },
+    { phase: "Week 3 — Full Feature Extraction + Folds (Apr 1–9)", dates: "Apr 1–2, 6–9", items: [
+      "WED 04/01 10am–12pm: Implement burstiness, entropy, repetition metrics, dependency tree depth",
+      "WED 04/01 2pm–5pm: Run full feature extraction on ALL 5,000 samples (add tqdm progress bar) · save features.csv",
+      "THU 04/02 10am–2:30pm: Normalize with StandardScaler · create all 5 LOMO cross-validation folds · save fold CSVs",
+      "MON 04/06 8am–12pm: Train Logistic Regression on all 5 folds · save results + models (logistic_fold1.pkl–fold5.pkl)",
+      "MON 04/06 2pm–5pm: Train Random Forest on all 5 folds · extract feature importance · save rf_results.csv",
+      "TUE 04/07 10am–2:30pm: Train XGBoost on all 5 folds · extract feature importance · save xgboost_results.csv",
+    ] },
+    { phase: "Week 4 — DetectGPT + Analysis (Apr 8–16)", dates: "Apr 8–9, 13–16", items: [
+      "WED 04/08 8am–12pm: Clone DetectGPT repo · install dependencies · prepare data in expected format · run on Folds 1–3",
+      "WED 04/08 2pm–5pm: Run DetectGPT on Folds 4–5 · compile all results into master_results.csv ✅",
+      "THU 04/09 10am–12pm: Optional RoBERTa (Google Colab GPU only) — skip if tight on time",
+      "MON 04/13 8am–12pm: Performance analysis — F1, AUC, generalization gaps for each model × fold",
+      "MON 04/13 2pm–5pm: Feature importance analysis — top 20 features, compare to Xia et al. findings",
+      "TUE 04/14 10am–2:30pm: Error analysis — confusion matrices, misclassified samples, failure patterns",
+    ] },
+    { phase: "Week 5 — Visualizations + Write Report (Apr 15–22)", dates: "Apr 15–16, 20–22", items: [
+      "WED 04/15 8am–12pm: Create all visualizations (bar charts, heatmaps, feature importance plots, confusion matrices)",
+      "WED 04/15 2pm–5pm: Write Introduction + Related Work + Methodology sections",
+      "THU 04/16 10am–2:30pm: Write Results + Analysis + Discussion sections",
+      "MON 04/20 8am–12pm: Write Conclusion + Abstract (do LAST) · proofread entire report",
+      "MON 04/20 2pm–5pm: Build presentation slides · practice 8-minute run-through · time yourself",
+      "TUE 04/21 10am–2:30pm: Submit final report PDF · 2 more timed practice runs of presentation",
+    ] },
+    { phase: "Presentation Day — Apr 23 🎯", dates: "Thu Apr 23", items: [
+      "WED 04/22 8am–12pm: 3 final practice runs — must hit 7:30–8:00 min every time",
+      "WED 04/22: Back up slides online (email + Google Drive)",
+      "THU 04/23: Final calm run-through in the morning",
+      "THU 04/23: PRESENT PROJECT — 8 minutes 🎯",
+      "THU 04/23: Answer Q&A confidently",
+      "🎉 DONE! You built a machine learning research project in Python from scratch!",
+    ] }
   ],
-
   security: [
-    {
-      phase: "Week 1 — Core Domains (Mar 16–19)",
-      dates: "Mar 16–19 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: Download Messer notes PDF, watch Threats & Attacks videos (2h)",
-        "MON: Understand malware types + social engineering attacks (1h)",
-        "TUE: ExamCompass — 20 practice questions, review wrong answers — 1h max",
-        "WED: Watch Messer: Architecture & Design + Implementation domains (2h)",
-        "WED: Study cryptography fundamentals — symmetric, asymmetric, PKI (1h)",
-        "THU: 20 practice questions on cryptography — 1h max",
-      ]
-    },
-    {
-      phase: "Week 2 — Remaining Domains (Mar 23–26)",
-      dates: "Mar 23–26 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: Watch Messer: Operations & Incident Response domain (2h)",
-        "MON: Watch Messer: Governance, Risk & Compliance domain (1h)",
-        "TUE: 20 practice questions on GRC + incident response — 1h max",
-        "WED: Study network security — firewalls, IDS/IPS, VPNs (2h)",
-        "WED: Study identity management — MFA, SSO, federation (1h)",
-        "THU: 20 practice questions on network + identity — 1h max",
-      ]
-    },
-    {
-      phase: "Week 3 — Practice Exams Begin (Mar 30 – Apr 2)",
-      dates: "Mar 30 – Apr 2 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: Full domain review — all 5 domains with notes (3h)",
-        "MON: First timed practice exam — 85 questions, 90 min (2h)",
-        "TUE: Review wrong answers from practice exam — 1h max",
-        "WED: Second timed practice exam (2h)",
-        "WED: Deep-dive on weakest domain from results (2h)",
-        "THU: 30 targeted questions on weak areas — 1h max",
-      ]
-    },
-    {
-      phase: "Week 4 — Final Prep (Apr 6–9)",
-      dates: "Apr 6–9 · Mon/Wed heavy, Tue/Thu light",
-      items: [
-        "MON: Third timed practice exam, target 85%+ (2h)",
-        "MON: Deep-dive second weakest domain (2h)",
-        "TUE: Book exam slot for Apr 15–21 using voucher ⚠️ — 1h max",
-        "WED: Fourth practice exam (2h)",
-        "WED: Light review of all 5 domains — flashcards only (1h)",
-        "THU: Final 30 questions — focus on flagged weak spots — 1h max",
-      ]
-    },
-    {
-      phase: "Exam Week (Apr 13–21)",
-      dates: "Apr 13–21",
-      items: [
-        "MON Apr 13: Light review only — no cramming, stay rested (1h)",
-        "TUE Apr 14: Skim notes on weakest domain — 1h max",
-        "WED Apr 15: One final practice pass — flashcards only (1h)",
-        "✅ TAKE SECURITY+ EXAM before April 21",
-        "Celebrate the certification! 🎉",
-      ]
-    }
+    { phase: "Week 1 — Domain 1: General Security Concepts (Mar 23–29)", dates: "Mar 23–29 · 12% of exam", items: [
+      "MON 03/23 2pm–5pm: 📺 Prof. Messer 1.1 — Security Controls (technical, managerial, operational, physical)",
+      "MON 03/23 2pm–5pm: 📺 Prof. Messer 1.2 — CIA Triad, AAA framework, Zero Trust, Gap Analysis",
+      "WED 03/25 gaps: 📺 Prof. Messer 1.3–1.4 — Change Management + Cryptography basics",
+      "WED 03/25 gaps: Take notes: symmetric (AES) vs asymmetric (RSA), hashing (SHA/MD5), PKI, TLS/SSL, digital signatures",
+      "SAT 03/28 late night: 🃏 Quizlet port numbers — https://quizlet.com/2209806/security-port-numbers-flash-cards/ · run deck until 90%+",
+      "SUN 03/29 late night: 📺 CyberKraft + The Networking Guru (YouTube) — PBQ walkthroughs · ExamCompass Domain 1 practice test",
+    ] },
+    { phase: "Week 2 — Domain 2: Threats, Vulnerabilities & Mitigations (Mar 30 – Apr 5)", dates: "Mar 30 – Apr 5 · 22% of exam", items: [
+      "MON 03/30 8pm–11:30pm: 📺 Prof. Messer 2.1–2.2 — Threat actors + Threat vectors · note: nation-state, insider, phishing, vishing, smishing, spear phishing",
+      "MON 03/30 8pm–11:30pm: Take notes: malware types — ransomware, trojan, worm, spyware, rootkit, keylogger, logic bomb",
+      "WED 04/01 8pm–11:30pm: 📺 Prof. Messer 2.3–2.4 — Vulnerability types + Indicators of malicious activity",
+      "WED 04/01 8pm–11:30pm: Take notes: SQL injection, XSS, buffer overflow, race conditions, zero-day, supply chain attacks",
+      "THU 04/02 8pm–11:30pm: 📺 Prof. Messer 2.5 — Mitigation techniques: network segmentation, patching, least privilege, IDS vs IPS",
+      "SAT 04/04 late night: 🃏 Quizlet ports + 📺 CyberKraft PBQs (network/firewall) + ExamCompass Domain 2 full test — record score",
+    ] },
+    { phase: "Week 3 — Domain 3: Security Architecture (Apr 6–12)", dates: "Apr 6–12 · 18% of exam", items: [
+      "MON 04/06 8pm–11:30pm: 📺 Prof. Messer 3.1–3.2 — Cloud models (IaaS/PaaS/SaaS), shared responsibility, Zero Trust, SASE, SD-WAN",
+      "MON 04/06 8pm–11:30pm: Take notes: network devices (firewall, proxy, load balancer, WAF), microsegmentation, VLANs",
+      "WED 04/08 8pm–11:30pm: 📺 Prof. Messer 3.3 — Data protection: DLP, data classification, redundancy (RAID, hot/warm/cold site)",
+      "WED 04/08 8pm–11:30pm: Take notes: honeypot, honeynet, DNS sinkhole, deception technologies",
+      "SAT 04/11 late night: 🃏 Quizlet ports (aim 95%+) + 📺 CyberKraft cloud/architecture PBQs + ExamCompass mixed Domain 1+2+3 test",
+      "SUN 04/12 late night: Review ALL wrong answers from ExamCompass — understand WHY each was wrong (not just the answer)",
+    ] },
+    { phase: "Week 4 — Domains 4 + 5: Operations & Governance (Apr 13–20)", dates: "Apr 13–20 · Domain 4=28%, Domain 5=20% — MOST IMPORTANT", items: [
+      "MON 04/13 8pm–11:30pm: 📺 Prof. Messer 4.1–4.2 — IAM (MFA, SSO, PAM, LDAP/AD) + Vulnerability scanning (Nessus, OpenVAS)",
+      "TUE 04/14 8pm–11:30pm: 📺 Prof. Messer 4.3–4.4 — SIEM, log analysis, Incident Response lifecycle (Prepare→Identify→Contain→Eradicate→Recover→Lessons Learned)",
+      "WED 04/15 8pm–11:30pm: 📺 Prof. Messer 4.5–4.6 — Endpoint security (EDR, MDM, MAM, BYOD) + Automation (SOAR) + Digital forensics",
+      "THU 04/16 8pm–11:30pm: 📺 Prof. Messer 5.1–5.6 — Risk management, compliance frameworks (NIST, ISO 27001, PCI-DSS, HIPAA, GDPR), data privacy laws",
+      "SAT 04/18 late night: 🃏 Quizlet ports (must be 100%) + 📺 CyberKraft Domain 4/5 PBQs + ExamCompass full mixed test all domains",
+      "SUN 04/19 late night: ⏱️ FULL timed practice exam — 90 questions, 90 min (ExamCompass) · review every wrong answer · re-watch Messer on 2 weakest areas",
+    ] },
+    { phase: "Exam Week (Apr 20–22) + EXAM DAY", dates: "Apr 20–21", items: [
+      "MON 04/20 8pm–11:30pm: Light cram only — Quizlet ports (15 min) + review summary notes per domain",
+      "MON 04/20: Focus on key concepts: Incident Response steps, cryptography types, Zero Trust, risk management, port numbers",
+      "MON 04/20: Confirm exam booking details and test center location",
+      "✅ TAKE SECURITY+ EXAM — Target Apr 21 or Apr 22",
+      "Exam format: 90 questions · 90 minutes · Need 750/900 to pass",
+      "Tip: PBQs appear first — flag and come back after all MCQs · read for 'BEST' and 'MOST' in questions",
+    ] }
   ],
-
   braiding: [
     {
       phase: "Knotless Braids (Mar 16 – Apr 2)",
