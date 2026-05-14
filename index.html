@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#0a0a0f"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Roadmap"/>
+<link rel="manifest" href="/Roadmap/manifest.json"/>
+<link rel="apple-touch-icon" href="/Roadmap/icon-192.png"/>
+<title>Summer Roadmap 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--bg4:#22222f;
+  --border:#2a2a3a;--text:#f0f0f8;--text2:#8888aa;--text3:#555570;
+  --accent:#7c6af7;--accent2:#a78bfa;--danger:#f87171;--success:#4ade80;
+  --python:#f59e0b;--crypto:#06b6d4;--aiml:#10b981;--hacking:#ef4444;
+  --french:#8b5cf6;--dmv:#f97316;--braiding:#ec4899;
+  --nav-h:68px;--hdr-h:60px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.5;min-height:100vh;overflow-x:hidden}
+
+/* AUTH */
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--hdr-h);background:rgba(10,10,15,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;height:100%;padding:0 16px}
+.hdr-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.3px}
+.user-bar{display:flex;align-items:center;gap:8px}
+#sync-icon{font-size:15px}
+#sync-btn{background:none;border:none;font-size:15px;cursor:pointer;padding:4px}
+.streak-badge{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:13px;font-weight:600}
+
+/* MAIN */
+.main{padding-top:calc(var(--hdr-h) + 16px);padding-bottom:calc(var(--nav-h) + 16px);padding-left:16px;padding-right:16px;min-height:100vh}
+.page{display:none}.page.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;height:var(--nav-h);background:rgba(10,10,15,.92);backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;background:none;border:none;color:var(--text3);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;transition:color .15s;font-family:'DM Sans',sans-serif}
+.nav-btn.active{color:var(--accent2)}
+.nav-icon{font-size:20px}.nav-label{font-size:10px;font-weight:500}
+.nav-center-wrap{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:300;color:#fff;margin-top:-10px;box-shadow:0 4px 20px rgba(124,106,247,.45)}
+
+/* GREETING */
+.greeting{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:18px;letter-spacing:-.3px}
+.greeting span{color:var(--accent2)}
+
+/* DEADLINE PILL */
+.dl-pill{background:linear-gradient(135deg,#1a0f2e,#2a1a4e);border:1px solid var(--accent);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.dl-icon{font-size:24px;flex-shrink:0}
+.dl-body{flex:1}
+.dl-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--accent2)}
+.dl-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.dl-count{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;flex-shrink:0}
+
+/* PROGRESS CARDS */
+.progress-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.prog-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:13px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:background .15s;border-left:3px solid var(--accent);position:relative}
+.prog-card:active{background:var(--bg3)}
+.prog-card.completed{border-left-color:var(--success)!important;opacity:.75}
+.prog-card.completed::after{content:'✓ Done';position:absolute;top:10px;right:12px;font-size:11px;font-weight:700;color:var(--success);font-family:'Syne',sans-serif}
+.card-icon{font-size:26px;flex-shrink:0;width:34px;text-align:center}
+.card-info{flex:1;min-width:0}
+.card-label{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
+.card-sub{font-size:11px;color:var(--text2);margin-bottom:5px}
+.pbar-wrap{height:4px;background:var(--bg4);border-radius:10px;overflow:hidden}
+.pbar{height:100%;border-radius:10px;background:var(--accent);transition:width .5s ease;width:0%}
+.card-pct{font-size:12px;color:var(--text2);margin-top:4px}
+
+/* SECTION TITLE */
+.sec-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px;margin-top:20px}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:26px;font-weight:800}
+.stat-label{font-size:11px;color:var(--text2);margin-top:2px}
+
+/* RECENT */
+.recent-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:center;gap:12px}
+.recent-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;background:var(--accent)}
+.recent-info{flex:1;min-width:0}
+.recent-track{font-size:13px;font-weight:600}
+.recent-meta{font-size:11px;color:var(--text2);margin-top:1px}
+.recent-hrs{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;flex-shrink:0}
+.empty-state{text-align:center;color:var(--text3);font-size:13px;padding:32px 0}
+.today-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px}
+.today-label{font-size:12px;color:var(--text2);margin-bottom:4px}
+.today-track{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
+.today-desc{font-size:13px;color:var(--text2);margin-top:4px;line-height:1.5}
+
+/* TRACK TABS */
+.track-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none}
+.track-tabs::-webkit-scrollbar{display:none}
+.track-tab{flex-shrink:0;background:var(--bg3);border:1px solid var(--border);border-radius:20px;color:var(--text2);font-size:12px;font-weight:600;padding:7px 13px;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.track-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.track-tab.done-tab{border-color:var(--success);color:var(--success)}
+.track-tab.done-tab.active{background:var(--success);border-color:var(--success);color:#fff}
+
+/* TASKS */
+.task-sec-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;margin-top:18px}
+.task-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:13px 14px;margin-bottom:6px;display:flex;align-items:flex-start;gap:11px;cursor:pointer;transition:background .15s}
+.task-item:active{background:var(--bg3)}
+.task-check{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:1px;transition:all .15s}
+.task-item.done .task-check{background:var(--success);border-color:var(--success)}
+.task-item.done .task-text{text-decoration:line-through;color:var(--text3)}
+.task-body{flex:1;min-width:0}
+.task-text{font-size:14px;line-height:1.4}
+.task-res{font-size:11px;color:var(--accent2);margin-top:3px}
+.task-res a{color:var(--accent2);text-decoration:none}
+.track-completed-banner{background:linear-gradient(135deg,#0d2d1f,#1a4a30);border:1px solid var(--success);border-radius:14px;padding:20px;text-align:center;margin-bottom:16px}
+.tcb-icon{font-size:36px;margin-bottom:8px}
+.tcb-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--success)}
+.tcb-sub{font-size:13px;color:var(--text2);margin-top:4px}
+
+/* TRACK ACTIONS BAR */
+.track-actions{display:flex;gap:8px;margin-bottom:4px;padding:4px 0}
+.track-action-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text2);font-size:12px;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.track-action-btn:hover{border-color:var(--accent);color:var(--text)}
+.track-action-btn.danger:hover{border-color:var(--danger);color:var(--danger)}
+
+/* SCHEDULE */
+.sched-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:8px}
+.sched-hdr{padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.sched-date{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
+.sched-date span{color:var(--text2);font-weight:400;font-size:12px;margin-left:6px}
+.sched-toggle{color:var(--text3);font-size:13px;transition:transform .2s}
+.sched-toggle.open{transform:rotate(180deg)}
+.sched-body{padding:0 16px;border-top:1px solid var(--border);display:none}
+.sched-body.open{display:block}
+.sched-block{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.sched-block:last-child{border-bottom:none}
+.sb-time{font-size:11px;color:var(--text3);flex-shrink:0;width:58px;padding-top:2px}
+.sb-content{flex:1}
+.sb-track{font-size:13px;font-weight:600}
+.sb-desc{font-size:12px;color:var(--text2);margin-top:2px;line-height:1.4}
+.sb-hrs{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text3);flex-shrink:0}
+.week-header{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--accent2);margin:18px 0 8px;letter-spacing:.3px}
+
+/* LOG FORM */
+.log-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px}
+.form-group{margin-bottom:16px}
+.form-label{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:8px}
+.form-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px;padding:12px 14px;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s}
+.form-input:focus{border-color:var(--accent)}
+select.form-input option{background:var(--bg3)}
+.form-textarea{resize:vertical;min-height:88px}
+.hrs-picker{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.hr-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text2);font-size:13px;font-weight:600;padding:7px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.hr-btn.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.mood-picker{display:flex;gap:8px}
+.mood-btn{background:var(--bg3);border:2px solid transparent;border-radius:10px;font-size:22px;padding:8px 12px;cursor:pointer;transition:all .15s}
+.mood-btn.sel{border-color:var(--accent)}
+.btn-primary{width:100%;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;padding:14px;cursor:pointer;font-family:'Syne',sans-serif;transition:opacity .15s;letter-spacing:.3px}
+.btn-primary:active{opacity:.85}
+.btn-sm{width:auto;padding:9px 16px;font-size:13px}
+.btn-danger{background:var(--danger)}
+
+/* SESSION HISTORY */
+.session-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:center;gap:12px}
+.session-del{background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer;padding:4px;flex-shrink:0;border-radius:6px}
+.session-del:hover{color:var(--danger)}
+
+/* NOTES */
+.notes-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px}
+.filter-sel{width:auto;flex:1;padding:9px 12px;font-size:13px}
+.note-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:8px;cursor:pointer;transition:background .15s}
+.note-card:active{background:var(--bg3)}
+.note-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:var(--bg4);color:var(--text2);margin-bottom:6px}
+.note-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px}
+.note-preview{font-size:13px;color:var(--text2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.note-date{font-size:11px;color:var(--text3);margin-top:6px}
+
+/* MODALS */
+.modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.72);align-items:flex-end}
+.modal.open{display:flex}
+.modal-card{background:var(--bg2);border-radius:20px 20px 0 0;padding:20px;width:100%;max-height:88vh;overflow-y:auto;border-top:1px solid var(--border)}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-hdr span{font-family:'Syne',sans-serif;font-size:16px;font-weight:700}
+.modal-close{background:var(--bg3);border:none;color:var(--text2);width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.confirm-modal-body{padding:20px;text-align:center}
+.confirm-modal-body p{color:var(--text2);font-size:14px;margin-bottom:20px;line-height:1.5}
+.confirm-btns{display:flex;gap:10px}
+.confirm-btns button{flex:1;padding:13px;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif}
+.confirm-cancel{background:var(--bg3);color:var(--text2)}
+.confirm-ok{background:var(--danger);color:#fff}
+
+/* SETTINGS PAGE */
+.settings-section{margin-bottom:24px}
+.settings-section-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.settings-row{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.settings-row-info{flex:1}
+.settings-row-label{font-size:14px;font-weight:600}
+.settings-row-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.settings-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text2);font-size:12px;font-weight:600;padding:7px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0}
+.settings-btn.danger-btn{border-color:var(--danger);color:var(--danger)}
+.track-edit-row{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px}
+.track-color-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.track-edit-name{flex:1;font-size:14px;font-weight:600}
+.track-edit-sub{font-size:11px;color:var(--text2)}
+
+/* INSTALL */
+#install-banner{position:fixed;bottom:calc(var(--nav-h) + 12px);left:12px;right:12px;background:#1a1a2e;border:1px solid var(--accent);border-radius:14px;padding:14px 16px;display:none;align-items:center;gap:12px;z-index:150;box-shadow:0 4px 20px rgba(124,106,247,.35)}
+.install-icon{font-size:26px;flex-shrink:0}
+.install-text{flex:1}
+.install-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff}
+.install-sub{font-size:12px;color:var(--text2);margin-top:2px}
+#install-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;flex-shrink:0}
+#install-dismiss{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:4px;flex-shrink:0}
+
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- APP -->
+<div id="app-shell">
+  <header class="header">
+    <div class="hdr-inner">
+      <h1 class="hdr-title" id="page-title">Dashboard</h1>
+      <div class="user-bar">
+        <span id="sync-icon">☁️</span>
+        <button id="sync-btn">🔄</button>
+        <span class="streak-badge" id="streak-badge">🔥 0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div id="page-dashboard" class="page active">
+      <div class="greeting" id="greeting"></div>
+      <div class="dl-pill" id="dl-pill" style="display:none">
+        <div class="dl-icon">⏰</div>
+        <div class="dl-body">
+          <div class="dl-title">GCM PAPER DEADLINE</div>
+          <div class="dl-sub">June 1, 10:00 AM — Chapter 12 mastery</div>
+        </div>
+        <div class="dl-count" id="dl-count"></div>
+      </div>
+      <div class="sec-title">Progress</div>
+      <div class="progress-cards" id="prog-cards"></div>
+      <div class="sec-title">Today's Focus</div>
+      <div id="today-focus"><div class="empty-state">Log today's session to track progress.</div></div>
+      <div class="sec-title">Recent Activity</div>
+      <div id="recent-list"><div class="empty-state">No sessions yet. Hit + to start!</div></div>
+      <div class="sec-title">Stats</div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num" id="stat-hrs">0h</div><div class="stat-label">Total Hours</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-sess">0</div><div class="stat-label">Sessions</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-streak">0</div><div class="stat-label">Day Streak</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-best">0</div><div class="stat-label">Best Streak</div></div>
+      </div>
+    </div>
+
+    <!-- LEARN -->
+    <div id="page-tasks" class="page">
+      <div class="track-tabs" id="track-tabs"></div>
+      <div class="track-actions" id="track-actions"></div>
+      <div id="tasks-content"></div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div id="page-schedule" class="page">
+      <div id="schedule-content"></div>
+    </div>
+
+    <!-- LOG -->
+    <div id="page-log" class="page">
+      <div class="log-card">
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input type="date" class="form-input" id="log-date"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Track</label>
+          <select class="form-input" id="log-track"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hours</label>
+          <div class="hrs-picker">
+            <button class="hr-btn" data-val="0.5">30m</button>
+            <button class="hr-btn" data-val="1">1h</button>
+            <button class="hr-btn" data-val="1.5">1.5h</button>
+            <button class="hr-btn" data-val="2">2h</button>
+            <button class="hr-btn" data-val="2.5">2.5h</button>
+            <button class="hr-btn" data-val="3">3h</button>
+          </div>
+          <input type="number" class="form-input" id="log-hours" placeholder="Or enter custom hours" min="0.25" max="12" step="0.25"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">What did you work on?</label>
+          <textarea class="form-input form-textarea" id="log-notes" placeholder="e.g. Read Ch.12 GCM construction, practiced French..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mood</label>
+          <div class="mood-picker">
+            <button class="mood-btn" data-mood="😫">😫</button>
+            <button class="mood-btn" data-mood="😕">😕</button>
+            <button class="mood-btn" data-mood="😐">😐</button>
+            <button class="mood-btn" data-mood="🙂">🙂</button>
+            <button class="mood-btn" data-mood="🔥">🔥</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="save-log-btn">Save Session</button>
+      </div>
+      <div class="sec-title" style="margin-top:24px">Session History</div>
+      <div id="log-history"></div>
+    </div>
+
+    <!-- NOTES -->
+    <div id="page-notes" class="page">
+      <div class="notes-toolbar">
+        <button class="btn-primary btn-sm" id="new-note-btn">+ New Note</button>
+        <select class="form-input filter-sel" id="notes-filter">
+          <option value="all">All Notes</option>
+        </select>
+      </div>
+      <div id="notes-list"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="page-settings" class="page">
+      <div class="settings-section">
+        <div class="settings-section-title">Tracks</div>
+        <div id="tracks-manage"></div>
+        <button class="btn-primary btn-sm" id="add-track-btn" style="margin-top:10px">+ Add Track</button>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">Data</div>
+        <div class="settings-row">
+          <div class="settings-row-info"><div class="settings-row-label">Export Sessions</div><div class="settings-row-sub">Download all logged sessions as JSON</div></div>
+          <button class="settings-btn" id="export-btn">Export</button>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-info"><div class="settings-row-label">Reset All Progress</div><div class="settings-row-sub">Clear all tasks, sessions & notes</div></div>
+          <button class="settings-btn danger-btn" id="reset-btn">Reset</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- NOTE MODAL -->
+  <div class="modal" id="note-modal">
+    <div class="modal-card">
+      <div class="modal-hdr"><span id="note-modal-title">New Note</span><button class="modal-close" id="close-note-modal">✕</button></div>
+      <input type="text" class="form-input" id="note-title-inp" placeholder="Note title..."/>
+      <select class="form-input" id="note-track-inp" style="margin-top:10px"></select>
+      <textarea class="form-input form-textarea" id="note-body-inp" placeholder="Write your note..." style="margin-top:10px;min-height:180px"></textarea>
+      <button class="btn-primary" id="save-note-btn" style="margin-top:12px">Save Note</button>
+    </div>
+  </div>
+
+  <!-- ADD/EDIT TRACK MODAL -->
+  <div class="modal" id="track-modal">
+    <div class="modal-card">
+      <div class="modal-hdr"><span id="track-modal-title">Add Track</span><button class="modal-close" id="close-track-modal">✕</button></div>
+      <input type="hidden" id="track-edit-id"/>
+      <div class="form-group" style="margin-top:8px">
+        <label class="form-label">Icon (emoji)</label>
+        <input type="text" class="form-input" id="track-icon-inp" placeholder="e.g. 📚" maxlength="4"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Track Name</label>
+        <input type="text" class="form-input" id="track-name-inp" placeholder="e.g. Linear Algebra"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Goal / Description</label>
+        <input type="text" class="form-input" id="track-goal-inp" placeholder="e.g. Finish by August"/>
+      </div>
+      <button class="btn-primary" id="save-track-btn" style="margin-top:4px">Save Track</button>
+    </div>
+  </div>
+
+  <!-- CONFIRM MODAL -->
+  <div class="modal" id="confirm-modal">
+    <div class="modal-card">
+      <div class="confirm-modal-body">
+        <div style="font-size:36px;margin-bottom:12px" id="confirm-icon">⚠️</div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px" id="confirm-title">Are you sure?</div>
+        <p id="confirm-msg"></p>
+        <div class="confirm-btns">
+          <button class="confirm-cancel" id="confirm-cancel-btn">Cancel</button>
+          <button class="confirm-ok" id="confirm-ok-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="install-banner">
+    <div class="install-icon">📲</div>
+    <div class="install-text"><div class="install-title">Install Roadmap App</div><div class="install-sub">Add to home screen</div></div>
+    <button id="install-btn">Install</button>
+    <button id="install-dismiss">✕</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-page="dashboard"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+    <button class="nav-btn" data-page="tasks"><span class="nav-icon">✅</span><span class="nav-label">Learn</span></button>
+    <button class="nav-btn nav-center" data-page="log"><div class="nav-center-wrap">+</div></button>
+    <button class="nav-btn" data-page="schedule"><span class="nav-icon">📅</span><span class="nav-label">Plan</span></button>
+    <button class="nav-btn" data-page="settings"><span class="nav-icon">⚙️</span><span class="nav-label">Settings</span></button>
+  </nav>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════════
+const SB_URL = 'https://uvqjswdfcixwktgvnzbq.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2cWpzd2RmaWN4d2t0Z3ZuemJxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk3NTI5NjcsImV4cCI6MjAyNTMyODk2N30.PiSPBFaFBx32XQPKRJrRAR8gVjXn5yzYGrB9MRPQqoI';
+const TABLE = 'user_data';
+const COL = 'tasks_done';
+
+let sb, currentUser;
+try { sb = supabase.createClient(SB_URL, SB_KEY); } catch(e) {}
+
+// ═══════════════════════════════════════════════
+// DEFAULT TRACKS
+// ═══════════════════════════════════════════════
+const DEFAULT_TRACKS = [
+  { id:'crypto',   icon:'🔐', label:'Cryptography',   color:'#06b6d4', goal:'GCM (Ch.12) mastery by June 1' },
+  { id:'python',   icon:'🐍', label:'Python',          color:'#f59e0b', goal:'Research-scientist level by Sept' },
+  { id:'aiml',     icon:'🤖', label:'AI/ML Stack',     color:'#10b981', goal:'Rebuild AI text detector from scratch' },
+  { id:'hacking',  icon:'💻', label:'Ethical Hacking', color:'#ef4444', goal:'Solid offensive security foundations' },
+  { id:'french',   icon:'🇫🇷', label:'French',          color:'#8b5cf6', goal:'Conversational by end of summer' },
+  { id:'dmv',      icon:'🚗', label:'DMV / Permit',    color:'#f97316', goal:'Pass FL knowledge test May 18' },
+  { id:'braiding', icon:'💇🏾', label:'Hair Braiding',  color:'#ec4899', goal:'1hr/day Sun–Mon–Tue' },
+];
+
+// ═══════════════════════════════════════════════
+// DEFAULT CURRICULUM
+// ═══════════════════════════════════════════════
+const DEFAULT_CURRICULUM = {
+  crypto:[
+    { title:'1. Prerequisites', tasks:[
+      { id:'c1', text:'XOR, bitwise ops, binary strings — basics' },
+      { id:'c2', text:'What is a block cipher? Key, plaintext, ciphertext' },
+      { id:'c3', text:'AES high-level overview (what it does, not internals)', res:'https://www.youtube.com/watch?v=O4xNJsjtN6E' },
+      { id:'c4', text:'PRF (pseudorandom function) and PRP (pseudorandom permutation) — intuition' },
+      { id:'c5', text:'Nonces: definition, why they must never repeat' },
+      { id:'c6', text:'IND-CPA security definition — intuition level', res:'https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/' },
+      { id:'c7', text:'Security games: adversary, advantage, negligible functions' },
+    ]},
+    { title:'2. CTR Mode (Ch.5 — read before Ch.12)', tasks:[
+      { id:'c8', text:'Read Chapter 5 (CTR Mode) of the Rogaway paper — full read', res:'https://www.cs.ucdavis.edu/~rogaway/papers/modes.pdf' },
+      { id:'c9', text:'Understand counter encryption block-by-block in CTR' },
+      { id:'c10', text:'Why CTR is parallelizable and CBC is not' },
+      { id:'c11', text:'Catastrophic nonce reuse in CTR mode — understand the attack' },
+    ]},
+    { title:'3. MAC & Authenticity (Part II intro + Ch.10)', tasks:[
+      { id:'c12', text:'What is a MAC? (Message Authentication Code) — intuition' },
+      { id:'c13', text:'Read Part II intro (pp.66–71) of Rogaway paper', res:'https://www.cs.ucdavis.edu/~rogaway/papers/modes.pdf' },
+      { id:'c14', text:'Read Chapter 10 (GMAC) — lightweight, 9 pages' },
+      { id:'c15', text:'Universal hash functions — intuition only' },
+    ]},
+    { title:'4. AEAD & GF(2¹²⁸) Math', tasks:[
+      { id:'c16', text:'AEAD: confidentiality + authenticity in one scheme — what it means' },
+      { id:'c17', text:'Associated data (the "A" in AEAD) — purpose and syntax' },
+      { id:'c18', text:'Finite fields: GF(2) and GF(2^n) at intuition level', res:'https://www.youtube.com/watch?v=x1v2tX4_dkU' },
+      { id:'c19', text:'Polynomial multiplication in GF(2¹²⁸) — how GHASH works' },
+      { id:'c20', text:'Birthday bound: why security degrades after ~2⁶⁴ operations' },
+    ]},
+    { title:'5. Chapter 12 — GCM (main event)', tasks:[
+      { id:'c21', text:'Read Part III intro (pp.112–116)', res:'https://www.cs.ucdavis.edu/~rogaway/papers/modes.pdf' },
+      { id:'c22', text:'Read Ch.12 — first pass: construction only, skip proofs' },
+      { id:'c23', text:'Draw the GCM construction: CTR encryption + GHASH tag' },
+      { id:'c24', text:'96-bit nonce recommendation — why other lengths hurt security' },
+      { id:'c25', text:'Tag truncation attacks — Ferguson attack intuition' },
+      { id:'c26', text:'Read Ch.12 — second pass: security theorems + bounds' },
+      { id:'c27', text:'Gap between proven bounds and known attacks in GCM' },
+      { id:'c28', text:'Why GMAC (nonce-based MAC) has extra risk beyond GCM' },
+      { id:'c29', text:'Critique sections: what Rogaway says GCM gets wrong' },
+      { id:'c30', text:'Read Hoang AES-GCM-SIV 2018 paper intro — connects to Ch.12', res:'https://eprint.iacr.org/2018/136.pdf' },
+      { id:'c31', text:'Final review: explain GCM construction + security from scratch, verbally' },
+    ]},
+    { title:'6. Bonus — Hoang\'s related work', tasks:[
+      { id:'c32', text:'Read abstract + intro: Committing AE (2022)', res:'https://eprint.iacr.org/2022/268.pdf' },
+      { id:'c33', text:'What "committing" security means — and why GCM lacks it' },
+      { id:'c34', text:'Read abstract + intro: Succintly-Committing AE (CRYPTO 2024)', res:'https://eprint.iacr.org/2024/875.pdf' },
+      { id:'c35', text:'Read abstract + intro: Robust AE with Committing Security (2024)', res:'https://eprint.iacr.org/2024/1542.pdf' },
+    ]},
+  ],
+  python:[
+    { title:'1. Foundations', tasks:[
+      { id:'p1', text:'Variables, types, loops, conditionals, functions', res:'https://www.youtube.com/watch?v=_uQrJ0TkZlc' },
+      { id:'p2', text:'Lists, dicts, sets, tuples — and list comprehensions' },
+      { id:'p3', text:'File I/O, exceptions, modules, imports' },
+      { id:'p4', text:'OOP: classes, inheritance, dunder methods', res:'https://realpython.com/python3-object-oriented-programming/' },
+      { id:'p5', text:'Virtual environments, pip, requirements.txt' },
+    ]},
+    { title:'2. Scientific Python Stack', tasks:[
+      { id:'p6', text:'NumPy: arrays, indexing, broadcasting, vectorized ops', res:'https://numpy.org/learn/' },
+      { id:'p7', text:'Pandas: DataFrames, groupby, merge, missing data', res:'https://www.kaggle.com/learn/pandas' },
+      { id:'p8', text:'Matplotlib + Seaborn: plots, subplots, styling', res:'https://www.kaggle.com/learn/data-visualization' },
+      { id:'p9', text:'Scikit-learn: fit/transform/predict pipeline', res:'https://scikit-learn.org/stable/tutorial/index.html' },
+    ]},
+    { title:'3. Research-Level Python', tasks:[
+      { id:'p10', text:'Jupyter notebooks: workflow, markdown, magic commands' },
+      { id:'p11', text:'Writing clean research code: docstrings, type hints, structure', res:'https://realpython.com/documenting-python-code/' },
+      { id:'p12', text:'Git CLI: commit, branch, push, pull, merge', res:'https://www.atlassian.com/git/tutorials' },
+      { id:'p13', text:'Reproduce your AI text detection project in clean Python' },
+      { id:'p14', text:'LeetCode: 10 easy problems in Python', res:'https://leetcode.com/problemset/?difficulty=EASY' },
+      { id:'p15', text:'LeetCode: 10 medium problems', res:'https://leetcode.com' },
+      { id:'p16', text:'HuggingFace basics: load model, tokenizer, run inference', res:'https://huggingface.co/learn/nlp-course/chapter1/1' },
+    ]},
+  ],
+  aiml:[
+    { title:'1. Math Foundations', tasks:[
+      { id:'a1', text:'Linear algebra: vectors, matrices, dot product, eigenvalues', res:'https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab' },
+      { id:'a2', text:'Calculus: derivatives, chain rule, gradient (for backprop)', res:'https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr' },
+      { id:'a3', text:'Probability: Bayes, distributions, expectation, conditional prob' },
+      { id:'a4', text:'Information theory: entropy, cross-entropy, KL divergence' },
+    ]},
+    { title:'2. Classical ML', tasks:[
+      { id:'a5', text:'Logistic Regression: gradient descent + loss from scratch', res:'https://www.youtube.com/watch?v=yIYKR4sgzI8' },
+      { id:'a6', text:'Decision Trees and Random Forest: intuition + scikit-learn', res:'https://www.kaggle.com/learn/intro-to-machine-learning' },
+      { id:'a7', text:'XGBoost: gradient boosting intuition + train/tune', res:'https://xgboost.readthedocs.io/en/stable/tutorials/index.html' },
+      { id:'a8', text:'Cross-validation: k-fold, stratified, leave-one-out' },
+      { id:'a9', text:'Evaluation: F1, precision, recall, confusion matrix, ROC/AUC' },
+      { id:'a10', text:'Feature engineering: extraction, selection, scaling' },
+    ]},
+    { title:'3. Neural Nets & NLP', tasks:[
+      { id:'a11', text:'Neural network basics: forward pass, backprop, activations', res:'https://www.youtube.com/playlist?list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0' },
+      { id:'a12', text:'Text features: TF-IDF, n-grams, stylometric features — code them' },
+      { id:'a13', text:'Transformers intuition: attention, tokens, embeddings', res:'https://www.youtube.com/watch?v=4Bdc55j80l8' },
+      { id:'a14', text:'Rebuild AI text detector: feature extraction → classical models' },
+      { id:'a15', text:'Rebuild AI text detector: neural baseline + LOOCV evaluation' },
+      { id:'a16', text:'Deploy rebuilt detector to Hugging Face Spaces', res:'https://huggingface.co/docs/hub/spaces' },
+    ]},
+  ],
+  hacking:[
+    { title:'1. Foundations', tasks:[
+      { id:'h1', text:'Linux CLI: navigation, permissions, processes, file system', res:'https://tryhackme.com/path/outline/presecurity' },
+      { id:'h2', text:'Networking: TCP/IP, DNS, HTTP, ports, packets' },
+      { id:'h3', text:'How the web works: requests, responses, cookies, headers' },
+      { id:'h4', text:'TryHackMe: Complete "Pre-Security" path', res:'https://tryhackme.com/path/outline/presecurity' },
+    ]},
+    { title:'2. Core Skills', tasks:[
+      { id:'h5', text:'TryHackMe: Start "Jr Penetration Tester" path', res:'https://tryhackme.com/path/outline/jrpenetrationtester' },
+      { id:'h6', text:'Nmap: port scanning, OS detection, service enumeration' },
+      { id:'h7', text:'Burp Suite: intercepting + repeating HTTP requests' },
+      { id:'h8', text:'OWASP Top 10: understand all 10 vulnerability categories', res:'https://owasp.org/www-project-top-ten/' },
+      { id:'h9', text:'SQL Injection: how it works + hands-on lab', res:'https://portswigger.net/web-security/sql-injection' },
+      { id:'h10', text:'XSS: reflected + stored — how it works + lab', res:'https://portswigger.net/web-security/cross-site-scripting' },
+    ]},
+    { title:'3. Practice', tasks:[
+      { id:'h11', text:'Complete 5 TryHackMe rooms (easy difficulty)', res:'https://tryhackme.com/hacktivities?tab=practice' },
+      { id:'h12', text:'HackTheBox: Starting Point machines (2)', res:'https://app.hackthebox.com/starting-point' },
+      { id:'h13', text:'PortSwigger Web Academy: 10 free labs', res:'https://portswigger.net/web-security/all-labs' },
+    ]},
+  ],
+  french:[
+    { title:'1. Daily Core Tool', tasks:[
+      { id:'f1', text:'Set up Duolingo — minimum 1 lesson every single day', res:'https://www.duolingo.com/learn' },
+      { id:'f2', text:'(Alternative) Pimsleur French — audio-first, great for speaking', res:'https://www.pimsleur.com/learn-french' },
+    ]},
+    { title:'2. Pronunciation & Speaking', tasks:[
+      { id:'f3', text:'French alphabet, nasal vowels, silent letters', res:'https://www.youtube.com/c/FrenchWithAlly' },
+      { id:'f4', text:'Basic greetings, introductions, numbers 1–100' },
+      { id:'f5', text:'Shadowing: listen + repeat French audio daily', res:'https://www.youtube.com/c/InnerFrench' },
+    ]},
+    { title:'3. Grammar Essentials', tasks:[
+      { id:'f6', text:'Gendered nouns (le/la) + indefinite articles (un/une)' },
+      { id:'f7', text:'Present tense: être, avoir + regular -er verbs', res:'https://www.lawlessfrench.com' },
+      { id:'f8', text:'Negation: ne...pas structure' },
+      { id:'f9', text:'Questions: est-ce que, inversion, question words' },
+      { id:'f10', text:'Memorize 100 most common French words', res:'https://www.fluentin3months.com/most-common-french-words/' },
+    ]},
+  ],
+  dmv:[
+    { title:'1. Florida Knowledge Test Prep', tasks:[
+      { id:'d1', text:'Read Florida Driver Handbook (full)', res:'https://www.flhsmv.gov/pdf/handbooks/en.pdf' },
+      { id:'d2', text:'Take 3 full practice tests (50 questions each)', res:'https://www.dmv-written-test.com/florida/' },
+      { id:'d3', text:'Road Signs practice test', res:'https://www.dmv-written-test.com/florida/road-signs-test.html' },
+      { id:'d4', text:'✅ Pass the FL DMV Knowledge Test — May 18!' },
+    ]},
+  ],
+  braiding:[
+    { title:'1. Technique Building (1hr Sun/Mon/Tue)', tasks:[
+      { id:'b1', text:'Basic 3-strand braid — perfect tension', res:'https://www.youtube.com/results?search_query=basic+3+strand+braid+tutorial' },
+      { id:'b2', text:'Cornrow basics: sectioning + feed-in technique', res:'https://www.youtube.com/results?search_query=cornrow+tutorial+for+beginners' },
+      { id:'b3', text:'Knotless box braids — starting technique', res:'https://www.youtube.com/results?search_query=knotless+box+braid+tutorial' },
+      { id:'b4', text:'Practice on a mannequin head or willing volunteer' },
+      { id:'b5', text:'Work on speed: time yourself, aim for tighter faster sections' },
+      { id:'b6', text:'Edge protection + scalp care during braiding sessions' },
+    ]},
+  ],
+};
+
+// ═══════════════════════════════════════════════
+// WEEKLY SCHEDULE DATA (May 17 – Aug 22)
+// Weekly pattern repeats: Sun 8h, Mon 10h, Tue 10h, Wed 6h, Thu 4h, Fri 4h, Sat OFF
+// ═══════════════════════════════════════════════
+function buildSchedule() {
+  // Start Sunday May 17, end Saturday Aug 22
+  const start = new Date(2026, 4, 17); // May 17
+  const end = new Date(2026, 7, 22);   // Aug 22
+  const weeks = [];
+  let cur = new Date(start);
+  while(cur <= end) {
+    const weekStart = new Date(cur);
+    const weekDays = [];
+    for(let d = 0; d < 7; d++) {
+      const day = new Date(cur);
+      day.setDate(cur.getDate() + d);
+      if(day > end) break;
+      const dow = day.getDay(); // 0=Sun,1=Mon,...,6=Sat
+      if(dow === 6) continue; // skip Saturday
+      const dateStr = day.toISOString().split('T')[0];
+      const hrs = dow===0?8:dow===1?10:dow===2?10:dow===3?6:dow===4?4:4;
+      const braiding = (dow<=2); // Sun Mon Tue
+      weekDays.push({ date: dateStr, day, dow, hrs, braiding });
+    }
+    if(weekDays.length) weeks.push({ weekStart, days: weekDays });
+    cur.setDate(cur.getDate() + 7);
+  }
+  return weeks;
+}
+
+function getDaySchedule(dateStr, dow, hrs, braiding) {
+  // Return blocks based on day type
+  const isDeadlineWeek = dateStr >= '2026-05-17' && dateStr <= '2026-06-01';
+  const isMay18 = dateStr === '2026-05-18';
+  const isMay17 = dateStr === '2026-05-17';
+  const isMay31 = dateStr === '2026-05-31';
+  const isJune1 = dateStr === '2026-06-01';
+
+  if(isMay17) return [
+    {time:'Morning',track:'🚗 DMV Prep',desc:'Read full FL handbook + 2 practice tests',hrs:'4h'},
+    {time:'Afternoon',track:'🔐 Crypto',desc:'Read Ch.1 Summary + Ch.2 Preliminaries of Rogaway paper',hrs:'2h'},
+    {time:'Evening',track:'🇫🇷 French',desc:'Duolingo setup + first 2 lessons',hrs:'30m'},
+    braiding?{time:'Fixed',track:'💇🏾 Braiding',desc:'1hr practice session',hrs:'1h'}:null,
+  ].filter(Boolean);
+
+  if(isMay18) return [
+    {time:'Morning',track:'🚗 DMV Test',desc:'Florida knowledge test — go pass it!',hrs:'3h'},
+    {time:'Midday',track:'🔐 Crypto',desc:'Read Chapter 5 (CTR Mode) — full read + notes',hrs:'2h'},
+    {time:'Afternoon',track:'🐍 Python',desc:'Python basics: variables, loops, functions (Mosh video)',hrs:'2h'},
+    {time:'Evening',track:'🇫🇷 French',desc:'Duolingo + pronunciation basics',hrs:'30m'},
+    braiding?{time:'Fixed',track:'💇🏾 Braiding',desc:'1hr practice session',hrs:'1h'}:null,
+  ].filter(Boolean);
+
+  if(isMay31) return [
+    {time:'Morning',track:'🔐 Crypto',desc:'Full GCM review: reconstruct from scratch on paper. Read Hoang AES-GCM-SIV intro.',hrs:'4h'},
+    {time:'Afternoon',track:'🐍 Python',desc:'LeetCode: 5 medium problems',hrs:'2h'},
+    {time:'Evening',track:'🇫🇷 French',desc:'Duolingo + review all grammar so far',hrs:'30m'},
+    braiding?{time:'Fixed',track:'💇🏾 Braiding',desc:'1hr practice session',hrs:'1h'}:null,
+  ].filter(Boolean);
+
+  // After June 1, add a standing crypto research block to every day
+  const postDeadline = dateStr > '2026-06-01';
+
+  // Generic pattern by day of week + phase
+  const blocks = [];
+  if(dow === 0) { // Sunday
+    if(postDeadline) blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Cryptography research — awaiting professor\'s instructions',hrs:'2h'});
+    blocks.push({time:postDeadline?'Midday':'Morning',track:'🐍 Python',desc:'Python or LeetCode — focused block',hrs:'3h'});
+    blocks.push({time:'Afternoon',track:'🤖 AI/ML',desc:'AI/ML stack: math or implementation',hrs:'2h'});
+    if(!postDeadline) blocks.push({time:'Late aft',track:'💻 Hacking',desc:'TryHackMe room or PortSwigger lab',hrs:'1h'});
+    blocks.push({time:'Evening',track:'🇫🇷 French',desc:'Duolingo + InnerFrench shadowing',hrs:'30m'});
+    if(braiding) blocks.push({time:'Fixed',track:'💇🏾 Braiding',desc:'1hr practice session',hrs:'1h'});
+  } else if(dow === 1) { // Monday
+    if(postDeadline) blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Cryptography research — awaiting professor\'s instructions',hrs:'2h'});
+    blocks.push({time:postDeadline?'Midday':'Morning',track:'🐍 Python',desc:'Python fundamentals or advanced topics',hrs:'3h'});
+    blocks.push({time:'Afternoon',track:'💻 Hacking',desc:'TryHackMe / Ethical hacking module',hrs:'2h'});
+    blocks.push({time:'Evening',track:'🇫🇷 French',desc:'Duolingo + Lawless French grammar',hrs:'30m'});
+    if(braiding) blocks.push({time:'Fixed',track:'💇🏾 Braiding',desc:'1hr practice session',hrs:'1h'});
+  } else if(dow === 2) { // Tuesday
+    if(isDeadlineWeek) {
+      blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Chapter 12 GCM — read + annotate',hrs:'3h'});
+      blocks.push({time:'Midday',track:'🐍 Python',desc:'Python practice',hrs:'2h'});
+      blocks.push({time:'Afternoon',track:'🤖 AI/ML',desc:'3Blue1Brown math or ML implementation',hrs:'2h'});
+    } else if(postDeadline) {
+      blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Cryptography research — awaiting professor\'s instructions',hrs:'2h'});
+      blocks.push({time:'Midday',track:'🐍 Python',desc:'Advanced Python or research code',hrs:'3h'});
+      blocks.push({time:'Afternoon',track:'🤖 AI/ML',desc:'AI/ML implementation session',hrs:'2h'});
+    } else {
+      blocks.push({time:'Morning',track:'🐍 Python',desc:'Advanced Python or research code',hrs:'3h'});
+      blocks.push({time:'Midday',track:'🤖 AI/ML',desc:'AI/ML implementation session',hrs:'3h'});
+      blocks.push({time:'Afternoon',track:'💻 Hacking',desc:'CTF / lab / room',hrs:'1h'});
+    }
+    blocks.push({time:'Evening',track:'🇫🇷 French',desc:'Duolingo + shadowing',hrs:'30m'});
+    if(braiding) blocks.push({time:'Fixed',track:'💇🏾 Braiding',desc:'1hr practice session',hrs:'1h'});
+  } else if(dow === 3) { // Wednesday
+    if(isDeadlineWeek) {
+      blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Chapter 12 second pass — security theorems',hrs:'3h'});
+      blocks.push({time:'Afternoon',track:'💻 Hacking',desc:'TryHackMe: networking or Linux module',hrs:'2h'});
+    } else if(postDeadline) {
+      blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Cryptography research — awaiting professor\'s instructions',hrs:'2h'});
+      blocks.push({time:'Midday',track:'🐍 Python',desc:'LeetCode or coding challenge',hrs:'2h'});
+      blocks.push({time:'Afternoon',track:'💻 Hacking',desc:'Hacking: lab, room, or OWASP reading',hrs:'1h'});
+    } else {
+      blocks.push({time:'Morning',track:'🐍 Python',desc:'LeetCode or coding challenge',hrs:'3h'});
+      blocks.push({time:'Afternoon',track:'💻 Hacking',desc:'Hacking: lab, room, or OWASP reading',hrs:'2h'});
+    }
+    blocks.push({time:'Evening',track:'🇫🇷 French',desc:'Duolingo + vocabulary review',hrs:'30m'});
+  } else if(dow === 4) { // Thursday
+    if(postDeadline) blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Cryptography research — awaiting professor\'s instructions',hrs:'1h'});
+    blocks.push({time:postDeadline?'Midday':'Morning',track:'🐍 Python',desc:'Python + NumPy/Pandas practice',hrs:'2h'});
+    blocks.push({time:'Afternoon',track:'🤖 AI/ML',desc:'AI/ML: study or implement',hrs:'1h'});
+    blocks.push({time:'Evening',track:'🇫🇷 French',desc:'Duolingo + French With Ally',hrs:'30m'});
+  } else if(dow === 5) { // Friday
+    if(postDeadline) blocks.push({time:'Morning',track:'🔐 Crypto',desc:'Cryptography research — awaiting professor\'s instructions',hrs:'1h'});
+    blocks.push({time:postDeadline?'Midday':'Morning',track:'🤖 AI/ML',desc:'AI/ML project work or reading',hrs:'2h'});
+    blocks.push({time:'Afternoon',track:'💻 Hacking',desc:'Hacking practice or OWASP labs',hrs:'1h'});
+    blocks.push({time:'Evening',track:'🇫🇷 French',desc:'Duolingo + InnerFrench episode',hrs:'30m'});
+  }
+  return blocks;
+}
+
+const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MON_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let state = {
+  tracks: JSON.parse(JSON.stringify(DEFAULT_TRACKS)),
+  curriculum: JSON.parse(JSON.stringify(DEFAULT_CURRICULUM)),
+  doneTasks: {},
+  sessions: [],
+  notes: [],
+  streak: 0,
+  bestStreak: 0,
+};
+let activeTrack = 'crypto';
+let selHours = null, selMood = null, editNoteId = null, editTrackId = null;
+let confirmCallback = null;
+let deferredInstall = null;
+
+// ═══════════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════════
+function showApp(){ $('app-shell').style.display='block'; renderAll(); }
+function $(id){ return document.getElementById(id); }
+
+// ═══════════════════════════════════════════════
+// DATA SYNC
+// ═══════════════════════════════════════════════
+async function loadData() {
+  if(!sb) return;
+  syncIcon('🔄');
+  try {
+    const {data} = await sb.from(TABLE).select(COL).eq('id','46ff1227-8bce-4138-9993-3b9f6f2508ef').single();
+    if(data&&data[COL]) {
+      const saved = typeof data[COL]==='string'?JSON.parse(data[COL]):data[COL];
+      if(saved.doneTasks) state.doneTasks=saved.doneTasks;
+      if(saved.sessions)  state.sessions=saved.sessions;
+      if(saved.notes)     state.notes=saved.notes;
+      if(saved.tracks)    state.tracks=saved.tracks;
+      if(saved.curriculum) state.curriculum=saved.curriculum;
+      computeStreaks(); renderAll();
+    }
+    syncIcon('☁️');
+  } catch(e){ syncIcon('⚠️'); }
+}
+
+async function saveData() {
+  if(!sb) return;
+  syncIcon('🔄');
+  try {
+    const payload={doneTasks:state.doneTasks,sessions:state.sessions,notes:state.notes,tracks:state.tracks,curriculum:state.curriculum};
+    await sb.from(TABLE).upsert({'id':'46ff1227-8bce-4138-9993-3b9f6f2508ef',[COL]:JSON.stringify(payload)});
+    syncIcon('✅'); setTimeout(()=>syncIcon('☁️'),2000);
+  } catch(e){ syncIcon('⚠️'); }
+}
+
+function syncIcon(i){ $('sync-icon').textContent=i; }
+
+// ═══════════════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════════════
+const PAGE_TITLES={dashboard:'Dashboard',tasks:'Learn',log:'Log Session',schedule:'Plan',settings:'Settings',notes:'Notes'};
+document.querySelectorAll('.nav-btn[data-page]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const pg=btn.dataset.page;
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    $('page-'+pg).classList.add('active');
+    $('page-title').textContent=PAGE_TITLES[pg]||pg;
+    if(pg==='log') initLogForm();
+    if(pg==='notes') renderNoteFilterOptions();
+  });
+});
+
+// ═══════════════════════════════════════════════
+// RENDER ALL
+// ═══════════════════════════════════════════════
+function renderAll(){
+  renderGreeting(); renderDeadline(); renderProgCards(); renderRecent();
+  renderStats(); renderTasks(); renderScheduleView(); renderLogHistory();
+  renderNotes(); renderNoteFilterOptions(); renderSettingsTracks();
+  updateStreak();
+}
+
+// ═══════════════════════════════════════════════
+// GREETING
+// ═══════════════════════════════════════════════
+function renderGreeting(){
+  const h=new Date().getHours();
+  const t=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  $('greeting').innerHTML=`${t}, <span>Melissa</span> 👋`;
+}
+
+// ═══════════════════════════════════════════════
+// DEADLINE
+// ═══════════════════════════════════════════════
+function renderDeadline(){
+  const dl=new Date('2026-06-01T10:00:00');
+  const now=new Date(); const diff=dl-now;
+  const pill=$('dl-pill');
+  if(diff>0){
+    pill.style.display='flex';
+    const days=Math.floor(diff/86400000);
+    const hrs=Math.floor((diff%86400000)/3600000);
+    $('dl-count').textContent=days>0?`${days}d ${hrs}h`:`${hrs}h left`;
+  } else { pill.style.display='none'; }
+}
+
+// ═══════════════════════════════════════════════
+// PROGRESS CARDS
+// ═══════════════════════════════════════════════
+function isTrackComplete(trackId){
+  const cur=state.curriculum[trackId];
+  if(!cur) return false;
+  const allTasks=cur.flatMap(s=>s.tasks);
+  if(!allTasks.length) return false;
+  return allTasks.every(t=>state.doneTasks[t.id]);
+}
+
+function getTrackColor(trackId){
+  const t=state.tracks.find(x=>x.id===trackId);
+  return t?t.color:'#7c6af7';
+}
+
+function renderProgCards(){
+  const el=$('prog-cards');
+  const GOALS={crypto:20,python:40,aiml:30,hacking:20,french:15,dmv:6,braiding:12};
+  const hrsByTrack={};
+  state.sessions.forEach(s=>{ hrsByTrack[s.track]=(hrsByTrack[s.track]||0)+s.hours; });
+  el.innerHTML=state.tracks.map(t=>{
+    const hrs=hrsByTrack[t.id]||0;
+    const goal=GOALS[t.id]||20;
+    const pct=Math.min(100,Math.round((hrs/goal)*100));
+    const done=isTrackComplete(t.id);
+    return `<div class="prog-card ${done?'completed':''}" style="border-left-color:${t.color}" onclick="goToTrack('${t.id}')">
+      <div class="card-icon">${t.icon}</div>
+      <div class="card-info">
+        <div class="card-label">${t.label}</div>
+        <div class="card-sub">${t.goal}</div>
+        <div class="pbar-wrap"><div class="pbar" style="width:${pct}%;background:${t.color}"></div></div>
+        <div class="card-pct">${hrs.toFixed(1)}h logged · ${pct}%</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function goToTrack(id){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.nav-btn[data-page="tasks"]').classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  $('page-tasks').classList.add('active');
+  $('page-title').textContent='Learn';
+  activeTrack=id; renderTasks();
+}
+
+// ═══════════════════════════════════════════════
+// RECENT + TODAY
+// ═══════════════════════════════════════════════
+function renderRecent(){
+  const el=$('recent-list');
+  const sorted=[...state.sessions].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5);
+  if(!sorted.length){ el.innerHTML='<div class="empty-state">No sessions yet. Hit + to start!</div>'; }
+  else {
+    el.innerHTML=sorted.map(s=>{
+      const t=state.tracks.find(x=>x.id===s.track)||{icon:'📚',label:s.track,color:'#7c6af7'};
+      return `<div class="recent-item">
+        <div class="recent-dot" style="background:${t.color}"></div>
+        <div class="recent-info">
+          <div class="recent-track">${t.icon} ${t.label}</div>
+          <div class="recent-meta">${s.date}${s.mood?' · '+s.mood:''}</div>
+        </div>
+        <div class="recent-hrs">${s.hours}h</div>
+      </div>`;
+    }).join('');
+  }
+  const todayStr=new Date().toISOString().split('T')[0];
+  const todaySess=state.sessions.filter(s=>s.date===todayStr);
+  const fe=$('today-focus');
+  if(!todaySess.length){ fe.innerHTML='<div class="empty-state">Log today\'s session to see your focus.</div>'; return; }
+  const totalHrs=todaySess.reduce((a,s)=>a+s.hours,0);
+  const tracks=[...new Set(todaySess.map(s=>s.track))].map(id=>{
+    const t=state.tracks.find(x=>x.id===id)||{icon:'📚',label:id};
+    return t.icon+' '+t.label;
+  }).join(', ');
+  fe.innerHTML=`<div class="today-card">
+    <div class="today-label">${todayStr}</div>
+    <div class="today-track">${tracks}</div>
+    <div class="today-desc">${totalHrs}h logged today</div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// STATS + STREAK
+// ═══════════════════════════════════════════════
+function renderStats(){
+  const total=state.sessions.reduce((a,s)=>a+s.hours,0);
+  $('stat-hrs').textContent=total.toFixed(1)+'h';
+  $('stat-sess').textContent=state.sessions.length;
+  $('stat-streak').textContent=state.streak;
+  $('stat-best').textContent=state.bestStreak;
+}
+
+function computeStreaks(){
+  const days=[...new Set(state.sessions.map(s=>s.date))].sort();
+  if(!days.length){ state.streak=0; return; }
+  let cur=1,best=1;
+  for(let i=1;i<days.length;i++){
+    const diff=(new Date(days[i])-new Date(days[i-1]))/86400000;
+    if(diff===1){ cur++; best=Math.max(best,cur); } else cur=1;
+  }
+  const todayStr=new Date().toISOString().split('T')[0];
+  const diff=(new Date(todayStr)-new Date(days[days.length-1]))/86400000;
+  state.streak=diff<=1?cur:0;
+  state.bestStreak=Math.max(best,state.streak);
+}
+
+function updateStreak(){ $('streak-badge').textContent='🔥 '+state.streak; }
+
+// ═══════════════════════════════════════════════
+// TASKS / CURRICULUM
+// ═══════════════════════════════════════════════
+function renderTasks(){
+  const tabsEl=$('track-tabs');
+  tabsEl.innerHTML=state.tracks.map(t=>{
+    const done=isTrackComplete(t.id);
+    return `<button class="track-tab ${t.id===activeTrack?'active':''} ${done?'done-tab':''}" onclick="switchTrack('${t.id}')">${t.icon} ${t.label}${done?' ✓':''}</button>`;
+  }).join('');
+  renderTrackActions();
+  renderTaskContent();
+}
+
+function switchTrack(id){ activeTrack=id; renderTasks(); }
+
+function renderTrackActions(){
+  const el=$('track-actions');
+  el.innerHTML=`
+    <button class="track-action-btn" onclick="openAddTask()">+ Add Task</button>
+    <button class="track-action-btn" onclick="openEditTrack('${activeTrack}')">✏️ Edit Track</button>
+    <button class="track-action-btn danger" onclick="confirmDeleteTrack('${activeTrack}')">🗑️ Delete Track</button>
+  `;
+}
+
+function renderTaskContent(){
+  const el=$('tasks-content');
+  const cur=state.curriculum[activeTrack];
+  const t=state.tracks.find(x=>x.id===activeTrack);
+  if(!cur||!cur.length){ el.innerHTML='<div class="empty-state">No tasks yet. Add one above.</div>'; return; }
+  const allTasks=cur.flatMap(s=>s.tasks);
+  const doneCnt=allTasks.filter(t=>state.doneTasks[t.id]).length;
+  const completed=allTasks.length>0&&doneCnt===allTasks.length;
+  let html='';
+  if(completed){
+    html+=`<div class="track-completed-banner"><div class="tcb-icon">🎉</div><div class="tcb-title">Track Complete!</div><div class="tcb-sub">${doneCnt}/${allTasks.length} tasks done — well done, Melissa.</div></div>`;
+  }
+  html+=cur.map((sec,si)=>`
+    <div class="task-sec-title">${sec.title}</div>
+    ${sec.tasks.map((task,ti)=>{
+      const done=!!state.doneTasks[task.id];
+      const resUrl=task.res&&task.res.startsWith('http')?task.res:null;
+      return `<div class="task-item ${done?'done':''}" onclick="toggleTask('${task.id}')">
+        <div class="task-check">${done?'✓':''}</div>
+        <div class="task-body">
+          <div class="task-text">${task.text}</div>
+          ${task.res?`<div class="task-res">🔗 <a href="${resUrl||'#'}" target="_blank" onclick="event.stopPropagation()">${task.res.length>55?task.res.slice(0,55)+'…':task.res}</a></div>`:''}
+        </div>
+        <button style="background:none;border:none;color:var(--text3);font-size:13px;cursor:pointer;padding:4px;flex-shrink:0" onclick="event.stopPropagation();confirmDeleteTask('${task.id}',${si},${ti})" title="Delete task">✕</button>
+      </div>`;
+    }).join('')}
+    <button style="background:none;border:1px dashed var(--border);border-radius:10px;width:100%;padding:10px;color:var(--text3);font-size:13px;cursor:pointer;margin-bottom:4px;font-family:'DM Sans',sans-serif" onclick="openAddTaskInSection(${si})">+ Add task to this section</button>
+  `).join('');
+  el.innerHTML=html;
+}
+
+function toggleTask(id){
+  state.doneTasks[id]=!state.doneTasks[id];
+  renderTaskContent(); renderTasks(); renderProgCards(); saveData();
+}
+
+// ─ Add Task Modal (inline simple prompt approach) ─
+function openAddTask(){ openAddTaskInSection(null); }
+function openAddTaskInSection(secIdx){
+  const cur=state.curriculum[activeTrack]||[];
+  let sectionChoices=cur.map((s,i)=>`<option value="${i}"${secIdx===i?' selected':''}>${s.title}</option>`).join('');
+  const modal=document.createElement('div');
+  modal.className='modal open';
+  modal.innerHTML=`<div class="modal-card">
+    <div class="modal-hdr"><span>Add Task</span><button class="modal-close" onclick="this.closest('.modal').remove()">✕</button></div>
+    <div class="form-group">
+      <label class="form-label">Task Text</label>
+      <input type="text" class="form-input" id="new-task-text" placeholder="What to learn or do..."/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Resource URL (optional)</label>
+      <input type="text" class="form-input" id="new-task-res" placeholder="https://..."/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Section</label>
+      <select class="form-input" id="new-task-sec">${sectionChoices}</select>
+      <button style="background:none;border:none;color:var(--accent2);font-size:13px;cursor:pointer;margin-top:6px;font-family:'DM Sans',sans-serif" onclick="promptNewSection()">+ Create new section</button>
+    </div>
+    <button class="btn-primary" onclick="saveNewTask()">Add Task</button>
+  </div>`;
+  document.body.appendChild(modal);
+}
+
+function promptNewSection(){
+  const name=prompt('New section name (e.g. "4. Advanced Topics"):');
+  if(!name) return;
+  if(!state.curriculum[activeTrack]) state.curriculum[activeTrack]=[];
+  state.curriculum[activeTrack].push({title:name,tasks:[]});
+  document.body.querySelectorAll('.modal').forEach(m=>m.remove());
+  openAddTaskInSection(state.curriculum[activeTrack].length-1);
+}
+
+function saveNewTask(){
+  const text=document.getElementById('new-task-text').value.trim();
+  if(!text) return;
+  const res=document.getElementById('new-task-res').value.trim();
+  const secIdx=parseInt(document.getElementById('new-task-sec').value);
+  if(!state.curriculum[activeTrack]) state.curriculum[activeTrack]=[];
+  const id=activeTrack+'_'+Date.now();
+  state.curriculum[activeTrack][secIdx].tasks.push({id,text,res:res||null});
+  document.body.querySelectorAll('.modal').forEach(m=>m.remove());
+  renderTaskContent(); renderTasks(); saveData();
+}
+
+function confirmDeleteTask(taskId,si,ti){
+  showConfirm('🗑️','Delete Task','Remove this task permanently?','Delete',()=>{
+    state.curriculum[activeTrack][si].tasks.splice(ti,1);
+    delete state.doneTasks[taskId];
+    renderTaskContent(); renderTasks(); renderProgCards(); saveData();
+  });
+}
+
+// ═══════════════════════════════════════════════
+// TRACK EDIT / DELETE
+// ═══════════════════════════════════════════════
+function openEditTrack(id){
+  const t=state.tracks.find(x=>x.id===id);
+  if(!t) return;
+  $('track-modal-title').textContent='Edit Track';
+  $('track-edit-id').value=id;
+  $('track-icon-inp').value=t.icon;
+  $('track-name-inp').value=t.label;
+  $('track-goal-inp').value=t.goal;
+  $('track-modal').classList.add('open');
+}
+
+function openAddTrackModal(){
+  $('track-modal-title').textContent='Add Track';
+  $('track-edit-id').value='';
+  $('track-icon-inp').value='';
+  $('track-name-inp').value='';
+  $('track-goal-inp').value='';
+  $('track-modal').classList.add('open');
+}
+
+$('close-track-modal').onclick=()=>$('track-modal').classList.remove('open');
+$('save-track-btn').onclick=()=>{
+  const icon=$('track-icon-inp').value.trim()||'📚';
+  const label=$('track-name-inp').value.trim();
+  const goal=$('track-goal-inp').value.trim();
+  const editId=$('track-edit-id').value;
+  if(!label) return;
+  if(editId){
+    const t=state.tracks.find(x=>x.id===editId);
+    if(t){ t.icon=icon; t.label=label; t.goal=goal; }
+  } else {
+    const id='track_'+Date.now();
+    const colors=['#06b6d4','#f59e0b','#10b981','#ef4444','#8b5cf6','#f97316','#ec4899','#3b82f6'];
+    const color=colors[state.tracks.length%colors.length];
+    state.tracks.push({id,icon,label,color,goal});
+    if(!state.curriculum[id]) state.curriculum[id]=[{title:'1. Tasks',tasks:[]}];
+  }
+  $('track-modal').classList.remove('open');
+  renderAll(); saveData();
+};
+
+$('add-track-btn').onclick=openAddTrackModal;
+
+function confirmDeleteTrack(id){
+  const t=state.tracks.find(x=>x.id===id);
+  if(!t) return;
+  showConfirm('🗑️','Delete Track',`Delete "${t.label}" and all its tasks? This cannot be undone.`,'Delete',()=>{
+    state.tracks=state.tracks.filter(x=>x.id!==id);
+    const cur=state.curriculum[id];
+    if(cur) cur.flatMap(s=>s.tasks).forEach(task=>delete state.doneTasks[task.id]);
+    delete state.curriculum[id];
+    if(activeTrack===id) activeTrack=state.tracks[0]?.id||'';
+    renderAll(); saveData();
+  });
+}
+
+// ═══════════════════════════════════════════════
+// SETTINGS TRACKS LIST
+// ═══════════════════════════════════════════════
+function renderSettingsTracks(){
+  const el=$('tracks-manage');
+  el.innerHTML=state.tracks.map(t=>`
+    <div class="track-edit-row">
+      <div class="track-color-dot" style="background:${t.color}"></div>
+      <div style="flex:1">
+        <div class="track-edit-name">${t.icon} ${t.label}</div>
+        <div class="track-edit-sub">${t.goal}</div>
+      </div>
+      <button class="settings-btn" onclick="openEditTrack('${t.id}')">Edit</button>
+      <button class="settings-btn danger-btn" onclick="confirmDeleteTrack('${t.id}')" style="margin-left:6px">Delete</button>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════
+// SCHEDULE
+// ═══════════════════════════════════════════════
+function renderScheduleView(){
+  const el=$('schedule-content');
+  const weeks=buildSchedule();
+  const todayStr=new Date().toISOString().split('T')[0];
+  let html=`<div class="sec-title" style="margin-top:0">May 17 – Aug 22, 2026</div>`;
+  weeks.forEach((week,wi)=>{
+    const ws=week.weekStart;
+    html+=`<div class="week-header">Week ${wi+1} — ${DAY_NAMES[ws.getDay()]} ${MON_NAMES[ws.getMonth()]} ${ws.getDate()}</div>`;
+    week.days.forEach((day,di)=>{
+      const isToday=day.date===todayStr;
+      const isPast=day.date<todayStr;
+      const bodyId=`sb-${wi}-${di}`;
+      const togId=`st-${wi}-${di}`;
+      const blocks=getDaySchedule(day.date,day.dow,day.hrs,day.braiding);
+      html+=`<div class="sched-card" style="${isPast?'opacity:0.55':''}">
+        <div class="sched-hdr" onclick="toggleSched('${bodyId}','${togId}')">
+          <div class="sched-date">${DAY_NAMES[day.dow]} ${MON_NAMES[day.day.getMonth()]} ${day.day.getDate()}${isToday?' 📍':''} <span>${day.hrs}h available${day.braiding?' · 💇🏾 1h braiding':''}</span></div>
+          <div class="sched-toggle ${isToday?'open':''}" id="${togId}">▼</div>
+        </div>
+        <div class="sched-body ${isToday?'open':''}" id="${bodyId}">
+          ${blocks.map(b=>`<div class="sched-block">
+            <div class="sb-time">${b.time}</div>
+            <div class="sb-content"><div class="sb-track">${b.track}</div><div class="sb-desc">${b.desc}</div></div>
+            <div class="sb-hrs">${b.hrs}</div>
+          </div>`).join('')}
+          ${!blocks.length?'<div style="padding:12px 0;font-size:13px;color:var(--text3)">No schedule yet for this day.</div>':''}
+        </div>
+      </div>`;
+    });
+  });
+  el.innerHTML=html;
+}
+
+function toggleSched(bodyId,togId){
+  const body=$(bodyId), tog=$(togId);
+  const open=body.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
+
+// ═══════════════════════════════════════════════
+// LOG SESSION
+// ═══════════════════════════════════════════════
+function initLogForm(){
+  $('log-date').value=new Date().toISOString().split('T')[0];
+  const sel=$('log-track');
+  sel.innerHTML=state.tracks.map(t=>`<option value="${t.id}">${t.icon} ${t.label}</option>`).join('');
+  selHours=null; selMood=null;
+  document.querySelectorAll('.hr-btn').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('sel'));
+  $('log-hours').value=''; $('log-notes').value='';
+}
+
+document.querySelectorAll('.hr-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    selHours=parseFloat(b.dataset.val);
+    document.querySelectorAll('.hr-btn').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');
+    $('log-hours').value='';
+  });
+});
+document.querySelectorAll('.mood-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    selMood=b.dataset.mood;
+    document.querySelectorAll('.mood-btn').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');
+  });
+});
+$('log-hours').addEventListener('input',()=>{ selHours=parseFloat($('log-hours').value)||null; document.querySelectorAll('.hr-btn').forEach(b=>b.classList.remove('sel')); });
+
+$('save-log-btn').onclick=()=>{
+  const date=$('log-date').value;
+  const track=$('log-track').value;
+  const hours=selHours||parseFloat($('log-hours').value)||0;
+  if(!date||!track||!hours){ alert('Please fill in date, track, and hours.'); return; }
+  const session={id:'s'+Date.now(),date,track,hours,notes:$('log-notes').value.trim(),mood:selMood};
+  state.sessions.unshift(session);
+  computeStreaks(); renderAll(); saveData();
+  // go back to dashboard
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.nav-btn[data-page="dashboard"]').classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  $('page-dashboard').classList.add('active');
+  $('page-title').textContent='Dashboard';
+};
+
+function renderLogHistory(){
+  const el=$('log-history');
+  if(!state.sessions.length){ el.innerHTML='<div class="empty-state">No sessions logged yet.</div>'; return; }
+  el.innerHTML=[...state.sessions].map(s=>{
+    const t=state.tracks.find(x=>x.id===s.track)||{icon:'📚',label:s.track,color:'#7c6af7'};
+    return `<div class="session-item">
+      <div class="recent-dot" style="background:${t.color}"></div>
+      <div class="recent-info">
+        <div class="recent-track">${t.icon} ${t.label}</div>
+        <div class="recent-meta">${s.date} · ${s.hours}h${s.mood?' · '+s.mood:''}${s.notes?' — '+s.notes.slice(0,40)+(s.notes.length>40?'…':''):''}</div>
+      </div>
+      <button class="session-del" onclick="deleteSession('${s.id}')" title="Delete">🗑️</button>
+    </div>`;
+  }).join('');
+}
+
+function deleteSession(id){
+  showConfirm('🗑️','Delete Session','Remove this logged session?','Delete',()=>{
+    state.sessions=state.sessions.filter(s=>s.id!==id);
+    computeStreaks(); renderAll(); saveData();
+  });
+}
+
+// ═══════════════════════════════════════════════
+// NOTES
+// ═══════════════════════════════════════════════
+function renderNoteFilterOptions(){
+  const sel=$('notes-filter');
+  const cur=sel.value;
+  sel.innerHTML=`<option value="all">All Notes</option>`+
+    state.tracks.map(t=>`<option value="${t.id}">${t.icon} ${t.label}</option>`).join('')+
+    `<option value="general">📝 General</option>`;
+  sel.value=cur||'all';
+}
+
+$('notes-filter').addEventListener('change',renderNotes);
+
+function renderNotes(){
+  const filter=$('notes-filter').value;
+  const filtered=filter==='all'?state.notes:state.notes.filter(n=>n.track===filter);
+  const el=$('notes-list');
+  if(!filtered.length){ el.innerHTML='<div class="empty-state">No notes yet.</div>'; return; }
+  el.innerHTML=[...filtered].sort((a,b)=>new Date(b.date)-new Date(a.date)).map(n=>{
+    const t=state.tracks.find(x=>x.id===n.track)||{label:n.track||'General'};
+    return `<div class="note-card" onclick="editNote('${n.id}')">
+      <div class="note-tag">${t.icon||'📝'} ${t.label}</div>
+      <div class="note-title">${n.title||'Untitled'}</div>
+      <div class="note-preview">${n.body||''}</div>
+      <div class="note-date">${n.date}</div>
+    </div>`;
+  }).join('');
+}
+
+function openNoteModal(id){
+  const sel=$('note-track-inp');
+  sel.innerHTML=`<option value="general">📝 General</option>`+state.tracks.map(t=>`<option value="${t.id}">${t.icon} ${t.label}</option>`).join('');
+  if(id){
+    const n=state.notes.find(x=>x.id===id);
+    if(!n) return;
+    editNoteId=id;
+    $('note-modal-title').textContent='Edit Note';
+    $('note-title-inp').value=n.title||'';
+    sel.value=n.track||'general';
+    $('note-body-inp').value=n.body||'';
+  } else {
+    editNoteId=null;
+    $('note-modal-title').textContent='New Note';
+    $('note-title-inp').value='';
+    $('note-body-inp').value='';
+  }
+  $('note-modal').classList.add('open');
+}
+
+function editNote(id){ openNoteModal(id); }
+$('new-note-btn').onclick=()=>openNoteModal(null);
+$('close-note-modal').onclick=()=>$('note-modal').classList.remove('open');
+$('save-note-btn').onclick=()=>{
+  const title=$('note-title-inp').value.trim();
+  const body=$('note-body-inp').value.trim();
+  const track=$('note-track-inp').value;
+  if(!body) return;
+  if(editNoteId){
+    const n=state.notes.find(x=>x.id===editNoteId);
+    if(n){ n.title=title; n.body=body; n.track=track; }
+  } else {
+    state.notes.unshift({id:'n'+Date.now(),title,body,track,date:new Date().toISOString().split('T')[0]});
+  }
+  $('note-modal').classList.remove('open');
+  renderNotes(); saveData();
+};
+
+// ═══════════════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════════════
+$('export-btn').onclick=()=>{
+  const blob=new Blob([JSON.stringify({sessions:state.sessions,notes:state.notes},null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='roadmap-export-'+new Date().toISOString().split('T')[0]+'.json'; a.click();
+};
+
+$('reset-btn').onclick=()=>{
+  showConfirm('⚠️','Reset All Data','This will clear ALL tasks, sessions, notes and progress. This cannot be undone.','Reset Everything',()=>{
+    state.doneTasks={}; state.sessions=[]; state.notes=[];
+    state.streak=0; state.bestStreak=0;
+    renderAll(); saveData();
+  });
+};
+
+// ═══════════════════════════════════════════════
+// CONFIRM MODAL
+// ═══════════════════════════════════════════════
+function showConfirm(icon,title,msg,okLabel,cb){
+  $('confirm-icon').textContent=icon;
+  $('confirm-title').textContent=title;
+  $('confirm-msg').textContent=msg;
+  $('confirm-ok-btn').textContent=okLabel;
+  confirmCallback=cb;
+  $('confirm-modal').classList.add('open');
+}
+$('confirm-cancel-btn').onclick=()=>$('confirm-modal').classList.remove('open');
+$('confirm-ok-btn').onclick=()=>{ $('confirm-modal').classList.remove('open'); if(confirmCallback) confirmCallback(); };
+
+// ═══════════════════════════════════════════════
+// INSTALL BANNER
+// ═══════════════════════════════════════════════
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredInstall=e; $('install-banner').style.display='flex'; });
+$('install-btn').onclick=async()=>{ if(deferredInstall){ await deferredInstall.prompt(); deferredInstall=null; $('install-banner').style.display='none'; } };
+$('install-dismiss').onclick=()=>{ $('install-banner').style.display='none'; };
+
+// ═══════════════════════════════════════════════
+// SYNC BTN
+// ═══════════════════════════════════════════════
+$('sync-btn').onclick=()=>{ loadData(); };
+
+// ═══════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════
+showApp();
+loadData();
+</script>
+</body>
+</html>
