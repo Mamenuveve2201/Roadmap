@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="My Roadmap" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>My Roadmap 2026–2031</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     DASHBOARD VIEW
+══════════════════════════════════════════ -->
+<div id="view-dashboard" class="view active">
+
+  <header class="hdr">
+    <div>
+      <div id="greeting" class="hdr-greeting">Good morning, Melissa 👋</div>
+      <div class="hdr-sub">Jun 8 – Dec 31, 2026 · 35 hrs/week</div>
+    </div>
+    <div class="hdr-actions">
+      <button id="sync-btn" class="icon-btn" title="Sync">☁️</button>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val" id="stat-total-h">0h</div>
+      <div class="stat-lbl">Total</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="stat-today-h">0h</div>
+      <div class="stat-lbl">Today</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="stat-streak">0</div>
+      <div class="stat-lbl">Streak</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="stat-tasks">0%</div>
+      <div class="stat-lbl">Done</div>
+    </div>
+  </div>
+
+  <div class="dash-content">
+
+    <!-- Phase 1 -->
+    <div class="phase-banner phase1-banner">
+      <div class="phase-tag">PHASE 1 — ACTIVE</div>
+      <div class="phase-title">Jun 1 – Dec 31, 2026</div>
+      <div class="phase-desc">35 hrs/week · Python, French, ASL, Game Dev, Hair Braiding, HTML/JS, SQL, C, Driving</div>
+    </div>
+
+    <div class="section-lbl">PHASE 1 TRACKS — CLICK TO VIEW TASKS</div>
+    <div id="phase1-cards" class="progress-cards"></div>
+
+    <!-- Phase 2 -->
+    <div class="phase-banner phase2-banner">
+      <div class="phase-tag">PHASE 2 — 2027</div>
+      <div class="phase-title">2027</div>
+      <div class="phase-desc">C++, Java, C#/Unity full game, Spanish, Violin, Cybersecurity depth, AI/ML projects</div>
+    </div>
+    <div class="section-lbl">PHASE 2 TRACKS</div>
+    <div id="phase2-cards" class="progress-cards"></div>
+
+    <!-- Later years -->
+    <div class="phase-banner later-banner">
+      <div class="phase-tag">LATER YEARS — 2028–2031</div>
+      <div class="phase-title">Long-Term Goals</div>
+      <div class="phase-desc">Mandarin, German, Swift, R, remaining languages + programming languages</div>
+    </div>
+    <div class="section-lbl">LATER YEARS</div>
+    <div id="later-cards" class="progress-cards"></div>
+
+    <!-- Recent sessions -->
+    <div class="section-lbl" style="margin-top:24px">RECENT ACTIVITY</div>
+    <div id="recent-list" class="recent-list">
+      <div class="empty-msg">No sessions yet. Start logging!</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     TASKS VIEW
+══════════════════════════════════════════ -->
+<div id="view-tasks" class="view">
+
+  <header class="hdr tasks-hdr">
+    <button class="back-btn" onclick="navigateTo('dashboard')">← Back</button>
+    <div id="tasks-track-title" class="hdr-greeting">Tasks</div>
+    <div></div>
+  </header>
+
+  <!-- Track tabs (Phase 1 only) -->
+  <div id="track-tabs" class="track-tabs"></div>
+
+  <!-- Tasks content -->
+  <div id="tasks-content" class="tasks-content"></div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     LOG SESSION MODAL
+══════════════════════════════════════════ -->
+<div id="modal-log" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-hdr">
+      <span id="modal-log-title">Log Session</span>
+      <button onclick="closeModal('modal-log')" class="modal-close">✕</button>
+    </div>
+    <input type="hidden" id="log-track-id" />
+    <label class="field-lbl">Hours studied</label>
+    <input type="number" id="log-hours" class="field-input" min="0.25" max="16" step="0.25" placeholder="e.g. 2.5" />
+    <label class="field-lbl">Note (optional)</label>
+    <input type="text" id="log-note" class="field-input" placeholder="What did you work on?" maxlength="120" />
+    <button class="submit-btn" onclick="submitSession()">Save Session</button>
+  </div>
+</div>
+
+<!-- Bottom nav -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="navigateTo('dashboard')" id="nav-dash">
+    <span>🏠</span><span class="nav-lbl">Dashboard</span>
+  </button>
+  <button class="nav-btn" onclick="openLogFromNav()" id="nav-log">
+    <span class="nav-plus">+</span><span class="nav-lbl">Log</span>
+  </button>
+  <button class="nav-btn" onclick="navigateTo('tasks')" id="nav-tasks">
+    <span>📋</span><span class="nav-lbl">Tasks</span>
+  </button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
