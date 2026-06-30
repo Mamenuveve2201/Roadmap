@@ -23,11 +23,11 @@ const TRACKS = [
   {
     id: 'python', phase: 1, icon: '🐍', label: 'Python',
     color: '#3b82f6',
-    desc: 'Proficient by August 8, 2026 · 12 hrs/wk · 120 hr goal',
+    desc: 'Proficient by August 8, 2026',
     targetHours: 120,
     weeklyHours: 12,
-    startDate: '2026-06-17',
-    endDate: '2026-08-08',
+    startDate: '2026-07-01',
+    endDate: '2026-08-23',
     weeks: [
       {
         label: 'Week 1–2 — Core Syntax',
@@ -96,10 +96,10 @@ const TRACKS = [
   {
     id: 'french', phase: 2, icon: '🇫🇷', label: 'French',
     color: '#8b5cf6',
-    desc: 'A2 / touching B1 by Dec 31 · 3.5 hrs/wk · 30 min/day',
+    desc: 'A2 / touching B1 by Dec 31',
     targetHours: 108,
     weeklyHours: 3.5,
-    startDate: '2026-06-17',
+    startDate: '2026-08-24',
     endDate: '2026-12-31',
     weeks: [
       {
@@ -170,11 +170,11 @@ const TRACKS = [
   {
     id: 'hair', phase: 1, icon: '💇🏾', label: 'Hair Braiding',
     color: '#ec4899',
-    desc: '5 styles by Dec 31 · 30 min, 3x/week · Knotless + Box concurrent from Jun 17',
+    desc: '5 styles by Dec 31 · Knotless + Box concurrent from Jun 17',
     targetHours: 46,
     weeklyHours: 1.5,
-    startDate: '2026-06-17',
-    endDate: '2026-12-31',
+    startDate: '2026-07-01',
+    endDate: '2026-08-23',
     weeks: [
       {
         label: 'Phase A — Knotless + Box Braids (Concurrent)',
@@ -361,11 +361,11 @@ const TRACKS = [
   {
     id: 'sql', phase: 2, icon: '🗄️', label: 'SQL',
     color: '#06b6d4',
-    desc: 'Working proficiency by Sep 30 · 3 hrs/wk · Starts Aug 9',
+    desc: 'Working proficiency by Sep 30',
     targetHours: 24,
     weeklyHours: 3,
-    startDate: '2026-08-09',
-    endDate: '2026-09-30',
+    startDate: '2026-08-24',
+    endDate: '2026-12-31',
     weeks: [
       {
         label: 'Week 1–2 — Core Queries',
@@ -475,8 +475,8 @@ const TRACKS = [
     desc: 'Licensed by October 2026 · Ongoing practice',
     targetHours: 40,
     weeklyHours: 2,
-    startDate: '2026-06-17',
-    endDate: '2026-10-31',
+    startDate: '2026-08-24',
+    endDate: '2026-12-31',
     weeks: [
       {
         label: 'Stage 1 — Permit + Basics',
@@ -516,11 +516,11 @@ const TRACKS = [
   {
     id: 'secplus', phase: 1, icon: '🔐', label: 'Security+',
     color: '#ef4444',
-    desc: 'Pass by end of July 2026 · 2hrs/day · $286',
+    desc: 'Pass by end of July 2026 · $286',
     targetHours: 90,
     weeklyHours: 14,
-    startDate: '2026-06-17',
-    endDate: '2026-07-31',
+    startDate: '2026-07-01',
+    endDate: '2026-08-23',
     weeks: [
       {
         label: 'Week 1–2 — Foundations',
@@ -566,11 +566,11 @@ const TRACKS = [
   {
     id: 'tryhackme', phase: 1, icon: '🖥️', label: 'TryHackMe',
     color: '#10b981',
-    desc: 'SOC Level 1 path · Jul–Aug 2026 · Target Top 10%',
+    desc: 'Starting with CS fundamentals, building up through to SOC Level 1 · Target Top 10%',
     targetHours: 60,
     weeklyHours: 4,
     startDate: '2026-07-01',
-    endDate: '2026-08-31',
+    endDate: '2026-08-23',
     weeks: [
       {
         label: 'Module 1 — Cyber Defence Frameworks',
@@ -642,7 +642,7 @@ const TRACKS = [
     id: 'fl_permit', phase: 1, icon: '🪪', label: 'Florida Knowledge Test',
     color: '#84cc16',
     desc: 'Pass FL learner permit knowledge test',
-    targetHours: 0, weeklyHours: 0, startDate: '2026-07-01', endDate: '2026-07-15', weeks: []
+    targetHours: 0, weeklyHours: 0, startDate: '2026-07-01', endDate: '2026-08-23', weeks: []
   },
   {
     id: 'aws_ai', phase: 1, icon: '🧠', label: 'AWS AI Practitioner',
@@ -650,8 +650,8 @@ const TRACKS = [
     desc: 'AIF-C01 · Exam Aug 17, 2026 · $50 (promo code) · Pass by Sep 30 for free Cloud Practitioner',
     targetHours: 25,
     weeklyHours: 5,
-    startDate: '2026-08-01',
-    endDate: '2026-08-17',
+    startDate: '2026-07-01',
+    endDate: '2026-08-23',
     weeks: [
       {
         label: 'Weeks 1–3 — Bedrock, SageMaker, Amazon Q + Exam',
@@ -677,8 +677,8 @@ const TRACKS = [
     desc: 'CLF-C02 · Exam Aug 31, 2026 · Free via AI Practitioner promo · Complete by Nov 30, 2026',
     targetHours: 15,
     weeklyHours: 5,
-    startDate: '2026-08-18',
-    endDate: '2026-08-31',
+    startDate: '2026-08-24',
+    endDate: '2026-12-31',
     weeks: [
       {
         label: 'Weeks 1–2 — Foundational Overview + Exam',
@@ -700,8 +700,8 @@ const TRACKS = [
     desc: 'SAA-C03 · Sep 1 – Exam Oct 12, 2026 · $75 (50% voucher from AI Practitioner) · Stéphane Maarek course',
     targetHours: 60,
     weeklyHours: 5,
-    startDate: '2026-09-01',
-    endDate: '2026-10-12',
+    startDate: '2026-08-24',
+    endDate: '2026-12-31',
     weeks: [
       {
         label: 'Week 1–2 — Core Services',
@@ -752,8 +752,8 @@ const TRACKS = [
     desc: 'SCS-C02 · Oct 13–Dec 2026 · $150 · Your biggest differentiator',
     targetHours: 80,
     weeklyHours: 5,
-    startDate: '2026-10-13',
-    endDate: '2026-12-15',
+    startDate: '2026-08-24',
+    endDate: '2026-12-31',
     weeks: [
       {
         label: 'Month 1 — IAM + Logging + Monitoring',
@@ -884,10 +884,10 @@ const TRACKS = [
   {
     id: 'asl', phase: 2, icon: '🤟', label: 'Sign Language (ASL)',
     color: '#a78bfa',
-    desc: 'Daily habit · 15 min/day from Jun 17 · ~1.75 hrs/wk · Foundation by Dec 31',
+    desc: 'Daily habit · Foundation by Dec 31',
     targetHours: 54,
     weeklyHours: 1.75,
-    startDate: '2026-06-17',
+    startDate: '2026-08-24',
     endDate: '2026-12-31',
     weeks: [
       {
