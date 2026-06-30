@@ -408,7 +408,7 @@ const TRACKS = [
     id: 'comptia_secai', phase: 2, icon: '🛡️', label: 'CompTIA SecAI+',
     color: '#ef4444',
     desc: 'Security AI certification',
-    targetHours: 0, weeklyHours: 0, startDate: '2026-08-24', endDate: '2026-12-31', weeks: []
+    targetHours: 0, weeklyHours: 0, startDate: '2026-11-16', endDate: '2026-12-21', weeks: []
   },
   {
     id: 'c', phase: 3, icon: '⚙️', label: 'C Language',
@@ -516,7 +516,7 @@ const TRACKS = [
   {
     id: 'secplus', phase: 1, icon: '🔐', label: 'Security+',
     color: '#ef4444',
-    desc: 'Pass by end of July 2026 · $286',
+    desc: 'Pass by August 8, 2026 · $286',
     targetHours: 90,
     weeklyHours: 14,
     startDate: '2026-07-01',
@@ -674,11 +674,11 @@ const TRACKS = [
   {
     id: 'aws_ccp', phase: 2, icon: '☁️', label: 'AWS Cloud Practitioner',
     color: '#0ea5e9',
-    desc: 'CLF-C02 · Exam Aug 31, 2026 · Free via AI Practitioner promo · Complete by Nov 30, 2026',
+    desc: 'CLF-C02 · Aug 24 – Sep 14 · Free via AI Practitioner promo',
     targetHours: 15,
     weeklyHours: 5,
     startDate: '2026-08-24',
-    endDate: '2026-12-31',
+    endDate: '2026-09-14',
     weeks: [
       {
         label: 'Weeks 1–2 — Foundational Overview + Exam',
@@ -697,11 +697,11 @@ const TRACKS = [
   {
     id: 'aws_saa', phase: 2, icon: '🏗️', label: 'AWS Solutions Architect',
     color: '#f59e0b',
-    desc: 'SAA-C03 · Sep 1 – Exam Oct 12, 2026 · $75 (50% voucher from AI Practitioner) · Stéphane Maarek course',
+    desc: 'SAA-C03 · Sep 15 – Oct 16 · $75 (50% voucher from AI Practitioner) · Stéphane Maarek course',
     targetHours: 60,
     weeklyHours: 5,
-    startDate: '2026-08-24',
-    endDate: '2026-12-31',
+    startDate: '2026-09-15',
+    endDate: '2026-10-16',
     weeks: [
       {
         label: 'Week 1–2 — Core Services',
@@ -749,11 +749,11 @@ const TRACKS = [
   {
     id: 'aws_sec', phase: 2, icon: '🔒', label: 'AWS Security Specialty',
     color: '#8b5cf6',
-    desc: 'SCS-C02 · Oct 13–Dec 2026 · $150 · Your biggest differentiator',
+    desc: 'SCS-C02 · Oct 17 – Nov 15 · $150 · Your biggest differentiator',
     targetHours: 80,
     weeklyHours: 5,
-    startDate: '2026-08-24',
-    endDate: '2026-12-31',
+    startDate: '2026-10-17',
+    endDate: '2026-11-15',
     weeks: [
       {
         label: 'Month 1 — IAM + Logging + Monitoring',
