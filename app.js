@@ -94,7 +94,7 @@ const TRACKS = [
   },
 
   {
-    id: 'french', phase: 1, icon: '🇫🇷', label: 'French',
+    id: 'french', phase: 2, icon: '🇫🇷', label: 'French',
     color: '#8b5cf6',
     desc: 'A2 / touching B1 by Dec 31 · 3.5 hrs/wk · 30 min/day',
     targetHours: 108,
@@ -231,7 +231,7 @@ const TRACKS = [
   },
 
   {
-    id: 'gamedev', phase: 1, icon: '🎮', label: 'Game Dev (Unity)',
+    id: 'gamedev', phase: 3, icon: '🎮', label: 'Game Dev (Unity)',
     color: '#f59e0b',
     desc: 'Working city sim prototype by Dec 31 · 8 hrs/wk (14 hrs after Aug 8)',
     targetHours: 200,
@@ -299,7 +299,7 @@ const TRACKS = [
   },
 
   {
-    id: 'htmljs', phase: 1, icon: '💻', label: 'HTML / JavaScript',
+    id: 'htmljs', phase: 3, icon: '💻', label: 'HTML / JavaScript',
     color: '#10b981',
     desc: 'Confident by Sep 30 · 3 hrs/wk · The Odin Project — go selectively, skip what you already know from PWA work',
     targetHours: 52,
@@ -359,7 +359,7 @@ const TRACKS = [
   },
 
   {
-    id: 'sql', phase: 1, icon: '🗄️', label: 'SQL',
+    id: 'sql', phase: 2, icon: '🗄️', label: 'SQL',
     color: '#06b6d4',
     desc: 'Working proficiency by Sep 30 · 3 hrs/wk · Starts Aug 9',
     targetHours: 24,
@@ -405,7 +405,13 @@ const TRACKS = [
   },
 
   {
-    id: 'c', phase: 1, icon: '⚙️', label: 'C Language',
+    id: 'comptia_secai', phase: 2, icon: '🛡️', label: 'CompTIA SecAI+',
+    color: '#ef4444',
+    desc: 'Security AI certification',
+    targetHours: 0, weeklyHours: 0, startDate: '2026-08-24', endDate: '2026-12-31', weeks: []
+  },
+  {
+    id: 'c', phase: 3, icon: '⚙️', label: 'C Language',
     color: '#f97316',
     desc: 'Functional by Dec 31 · 4 hrs/wk · Starts Sep 1',
     targetHours: 56,
@@ -464,7 +470,7 @@ const TRACKS = [
   },
 
   {
-    id: 'driving', phase: 1, icon: '🚗', label: 'Driving',
+    id: 'driving', phase: 2, icon: '🚗', label: 'Driving',
     color: '#84cc16',
     desc: 'Licensed by October 2026 · Ongoing practice',
     targetHours: 40,
@@ -621,6 +627,24 @@ const TRACKS = [
   },
 
   {
+    id: 'mascagni_research', phase: 1, icon: '🔬', label: "Dr. Mascagni's Research",
+    color: '#8b5cf6',
+    desc: 'Summer research position',
+    targetHours: 0, weeklyHours: 0, startDate: '2026-07-01', endDate: '2026-08-23', weeks: []
+  },
+  {
+    id: 'kumar_research', phase: 1, icon: '📈', label: "Dr. Kumar's Research",
+    color: '#8b5cf6',
+    desc: 'Summer research position — AI-driven portfolio rebalancing',
+    targetHours: 0, weeklyHours: 0, startDate: '2026-07-01', endDate: '2026-08-23', weeks: []
+  },
+  {
+    id: 'fl_permit', phase: 1, icon: '🪪', label: 'Florida Knowledge Test',
+    color: '#84cc16',
+    desc: 'Pass FL learner permit knowledge test',
+    targetHours: 0, weeklyHours: 0, startDate: '2026-07-01', endDate: '2026-07-15', weeks: []
+  },
+  {
     id: 'aws_ai', phase: 1, icon: '🧠', label: 'AWS AI Practitioner',
     color: '#06b6d4',
     desc: 'AIF-C01 · Exam Aug 17, 2026 · $50 (promo code) · Pass by Sep 30 for free Cloud Practitioner',
@@ -648,7 +672,7 @@ const TRACKS = [
   },
 
   {
-    id: 'aws_ccp', phase: 1, icon: '☁️', label: 'AWS Cloud Practitioner',
+    id: 'aws_ccp', phase: 2, icon: '☁️', label: 'AWS Cloud Practitioner',
     color: '#0ea5e9',
     desc: 'CLF-C02 · Exam Aug 31, 2026 · Free via AI Practitioner promo · Complete by Nov 30, 2026',
     targetHours: 15,
@@ -671,7 +695,7 @@ const TRACKS = [
   },
 
   {
-    id: 'aws_saa', phase: 1, icon: '🏗️', label: 'AWS Solutions Architect',
+    id: 'aws_saa', phase: 2, icon: '🏗️', label: 'AWS Solutions Architect',
     color: '#f59e0b',
     desc: 'SAA-C03 · Sep 1 – Exam Oct 12, 2026 · $75 (50% voucher from AI Practitioner) · Stéphane Maarek course',
     targetHours: 60,
@@ -723,7 +747,7 @@ const TRACKS = [
   },
 
   {
-    id: 'aws_sec', phase: 1, icon: '🔒', label: 'AWS Security Specialty',
+    id: 'aws_sec', phase: 2, icon: '🔒', label: 'AWS Security Specialty',
     color: '#8b5cf6',
     desc: 'SCS-C02 · Oct 13–Dec 2026 · $150 · Your biggest differentiator',
     targetHours: 80,
@@ -772,7 +796,7 @@ const TRACKS = [
   // PHASE 2 — 2027
   // ──────────────────────────────────────────────────────────
   {
-    id: 'cpp', phase: 2, icon: '⚡', label: 'C++',
+    id: 'cpp', phase: 3, icon: '⚡', label: 'C++',
     color: '#6366f1',
     desc: '2027 · Builds directly on C foundations',
     targetHours: 80,
@@ -782,7 +806,7 @@ const TRACKS = [
     weeks: []
   },
   {
-    id: 'java', phase: 2, icon: '☕', label: 'Java',
+    id: 'java', phase: 3, icon: '☕', label: 'Java',
     color: '#ef4444',
     desc: '2027 · OOP depth, enterprise patterns, Android basics',
     targetHours: 60,
@@ -792,7 +816,7 @@ const TRACKS = [
     weeks: []
   },
   {
-    id: 'csharp', phase: 2, icon: '#️⃣', label: 'C#',
+    id: 'csharp', phase: 3, icon: '#️⃣', label: 'C#',
     color: '#8b5cf6',
     desc: '2027 · Full Unity game build with C# depth',
     targetHours: 80,
@@ -802,7 +826,7 @@ const TRACKS = [
     weeks: []
   },
   {
-    id: 'spanish', phase: 2, icon: '🇪🇸', label: 'Spanish',
+    id: 'spanish', phase: 3, icon: '🇪🇸', label: 'Spanish',
     color: '#f59e0b',
     desc: '2027 · After French reaches B1 — transfer knowledge will speed this up',
     targetHours: 100,
@@ -812,7 +836,7 @@ const TRACKS = [
     weeks: []
   },
   {
-    id: 'violin', phase: 2, icon: '🎻', label: 'Violin',
+    id: 'violin', phase: 3, icon: '🎻', label: 'Violin',
     color: '#ec4899',
     desc: '2027 · Start from scratch — expect 2–3 years for genuine sound',
     targetHours: 150,
@@ -822,7 +846,7 @@ const TRACKS = [
     weeks: []
   },
   {
-    id: 'cyber', phase: 2, icon: '🔐', label: 'Cybersecurity / Ethical Hacking',
+    id: 'cyber', phase: 3, icon: '🔐', label: 'Cybersecurity / Ethical Hacking',
     color: '#10b981',
     desc: '2027 · Cryptography depth + ethical hacking labs (TryHackMe, HackTheBox)',
     targetHours: 200,
@@ -832,7 +856,7 @@ const TRACKS = [
     weeks: []
   },
   {
-    id: 'aiml', phase: 2, icon: '🤖', label: 'AI/ML (PhD Focus)',
+    id: 'aiml', phase: 3, icon: '🤖', label: 'AI/ML (PhD Focus)',
     color: '#06b6d4',
     desc: '2027 · Advanced via PhD — deep learning, transformers, research projects',
     targetHours: 0,
@@ -858,7 +882,7 @@ const TRACKS = [
     targetHours: 0, weeklyHours: 0, startDate: '2028-01-01', endDate: '2029-12-31', weeks: []
   },
   {
-    id: 'asl', phase: 1, icon: '🤟', label: 'Sign Language (ASL)',
+    id: 'asl', phase: 2, icon: '🤟', label: 'Sign Language (ASL)',
     color: '#a78bfa',
     desc: 'Daily habit · 15 min/day from Jun 17 · ~1.75 hrs/wk · Foundation by Dec 31',
     targetHours: 54,
