@@ -983,6 +983,8 @@ const TRACKS = [
 // ============================================================
 let state = {
   sessions: [],         // { id, trackId, date, hours, note }
+  trackCompleted: {},   // { 'python': true }
+  trackNotes: {},       // { 'python': '...' }
   tasksDone: {},        // { 'python-0-3': true } = track-weekIdx-taskIdx
 };
 let currentView = 'dashboard';
@@ -1003,6 +1005,8 @@ async function loadData() {
     if (saved) {
       state.sessions = saved.sessions || [];
       state.tasksDone = saved.tasksDone || {};
+      state.trackCompleted = saved.trackCompleted || {};
+      state.trackNotes = saved.trackNotes || {};
     }
   } catch (e) {
     console.warn('Load error:', e.message);
@@ -1013,7 +1017,7 @@ async function loadData() {
 async function saveData() {
   try {
     await db.from('user_data')
-      .update({ [COL]: { sessions: state.sessions, tasksDone: state.tasksDone } })
+      .update({ [COL]: { sessions: state.sessions, tasksDone: state.tasksDone, trackCompleted: state.trackCompleted, trackNotes: state.trackNotes } })
       .eq('id', ROW_UUID);
   } catch (e) {
     console.warn('Save error:', e.message);
@@ -1145,6 +1149,12 @@ function renderPhaseCards(containerId, phase) {
             <span>${done}/${total} tasks</span>
           </div>
         ` : `<div class="card-future-note">${t.desc}</div>`}
+      <div class="card-completion" onclick="event.stopPropagation()">
+        <label class="card-complete-label">
+          <input type="checkbox" ${state.trackCompleted[t.id] ? 'checked' : ''} onchange="toggleTrackComplete('${t.id}')" /> Completed
+        </label>
+        <textarea class="card-notes" placeholder="Notes — what went well, what didn't..." oninput="updateTrackNote('${t.id}', this.value)">${state.trackNotes[t.id] || ''}</textarea>
+      </div>
       </div>
     `;
   }).join('');
@@ -1317,6 +1327,17 @@ async function submitSession() {
   renderAll();
   if (currentView === 'tasks') renderTrackTasks(currentTrack);
   await saveData();
+}
+
+function toggleTrackComplete(trackId) {
+  state.trackCompleted[trackId] = !state.trackCompleted[trackId];
+  saveData();
+  renderAll();
+}
+
+function updateTrackNote(trackId, val) {
+  state.trackNotes[trackId] = val;
+  saveData();
 }
 
 // ============================================================
